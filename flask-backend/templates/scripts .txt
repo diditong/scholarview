@@ -1,0 +1,155 @@
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/plugins/forceDirected.js"></script>
+<script src="https://www.amcharts.com/lib/4/plugins/wordCloud.js"></script> 
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Keywords Chart code -->
+<script>
+  am4core.ready(function() {
+
+  // Themes begin
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+
+  var chart = am4core.create("keywords", am4plugins_wordCloud.WordCloud);
+  chart.fontFamily = "Courier New";
+
+  var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
+  series.randomness = 0.1;
+  series.rotationThreshold = 0.5;
+
+  series.data = JSON.parse('{{data1 | tojson}}');
+
+  series.dataFields.word = "tag";
+  series.dataFields.value = "count";
+
+  series.heatRules.push({
+    "target": series.labels.template,
+    "property": "fill",
+    "min": am4core.color("#0000CC"),
+    "max": am4core.color("#CC00CC"),
+    "dataField": "value"
+  });
+
+  series.labels.template.url = "https://stackoverflow.com/questions/tagged/{word}";
+  series.labels.template.urlTarget = "_blank";
+  series.labels.template.tooltipText = "{word}: {value}";
+
+  var hoverState = series.labels.template.states.create("hover");
+  hoverState.properties.fill = am4core.color("#FF0000");
+
+  var subtitle = chart.titles.create();
+  // subtitle.text = "(click to open)";
+
+  var title = chart.titles.create();
+  //title.text = "Most Popular Tags @ StackOverflow";
+  title.fontSize = 20;
+  title.fontWeight = "800";
+
+  }); // end am4core.ready()
+  </script>
+  
+<!-- Top Journals Chart code -->
+<script>
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+var chart = am4core.create("topjournals", am4charts.PieChart);
+chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+chart.data = JSON.parse('{{data2 | tojson}}');
+
+chart.radius = am4core.percent(80);
+chart.innerRadius = am4core.percent(40);
+chart.startAngle = 180;
+chart.endAngle = 360;  
+
+var series = chart.series.push(new am4charts.PieSeries());
+series.dataFields.value = "numPapers";
+series.dataFields.category = "journalName";
+
+series.slices.template.cornerRadius = 10;
+series.slices.template.innerCornerRadius = 7;
+series.slices.template.draggable = true;
+series.slices.template.inert = true;
+series.alignLabels = false;
+
+series.ticks.template.disabled = true;
+series.labels.template.text = "{value.percent.formatNumber('#.0')}%";
+series.labels.template.radius = am4core.percent(-40);
+series.labels.template.fill = am4core.color("white");
+series.labels.template.relativeRotation = 90;
+
+series.hiddenState.properties.startAngle = 90;
+series.hiddenState.properties.endAngle = 90;
+
+chart.legend = new am4charts.Legend();
+chart.legend.maxHeight = 120;
+chart.legend.scrollable = true;
+chart.legend.position = "bottom";
+}); // end am4core.ready()
+</script>
+
+
+<!-- Top Authors Chart code -->
+<script>
+
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+var chart = am4core.create("topauthors", am4plugins_forceDirected.ForceDirectedTree);
+var networkSeries = chart.series.push(new am4plugins_forceDirected.ForceDirectedSeries())
+
+chart.data = JSON.parse('{{data3 | tojson}}');
+
+networkSeries.dataFields.value = "numCitations";
+networkSeries.dataFields.name = "author";
+networkSeries.dataFields.children = "coauthors";
+networkSeries.nodes.template.tooltipText = "{author}: {numCitations}";
+networkSeries.nodes.template.fillOpacity = 1;
+
+networkSeries.nodes.template.label.text = "{initials}"
+networkSeries.fontSize = 20;
+
+networkSeries.minRadius = 10
+networkSeries.maxRadius = 50
+
+networkSeries.links.template.strokeWidth = 1;
+chart.legend = new am4charts.Legend();
+chart.legend.maxHeight = 80;
+chart.legend.maxWidth = 50;
+chart.legend.scrollable = true;
+chart.legend.position = "down";
+
+var hoverState = networkSeries.links.template.states.create("hover");
+hoverState.properties.strokeWidth = 3;
+hoverState.properties.strokeOpacity = 1;
+
+networkSeries.nodes.template.events.on("over", function(event) {
+  event.target.dataItem.childLinks.each(function(link) {
+    link.isHover = true;
+  })
+  if (event.target.dataItem.parentLink) {
+    event.target.dataItem.parentLink.isHover = true;
+  }
+
+})
+
+networkSeries.nodes.template.events.on("out", function(event) {
+  event.target.dataItem.childLinks.each(function(link) {
+    link.isHover = false;
+  })
+  if (event.target.dataItem.parentLink) {
+    event.target.dataItem.parentLink.isHover = false;
+  }
+})
+
+}); // end am4core.ready()
+</script>
