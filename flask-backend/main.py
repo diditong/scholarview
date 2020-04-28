@@ -86,7 +86,7 @@ def scholar(scholar_name):
     initials = "".join([name[0] for name in nameList])
     item["initials"] = initials
 
-  return render_template('demo.html', data1=keywords, data2=journals, data3=coauthors)
+  return render_template('demo.html', data1=keywords, data2=journals, data3=coauthors, )
   
 if __name__ == '__main__':
   app.run(debug=True)

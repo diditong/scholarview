@@ -1,18 +1,20 @@
 <!doctype html>
 <html lang="en">
 <style>
+  #timeline {
+    width: 100%;
+    height: 600px;
+  }
 	#keywords {
 		width: 100%;
 		height: 400px;
     margin-top: 100px;
 	}
-
 	#topjournals {
 		width: 100%;
 		height: 400px;
 		margin-top: 100px;
 	}
-
 	#topauthors {
 		width: 100%;
 		height: 400px;
@@ -21,10 +23,21 @@
 	}
 	body {
 		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-	}
+  }
+
+  #pyramid {
+  width: 100%;
+  height: 400px;
+  }
+  #radial {
+  width: 100%;
+  height: 400px;
+  }
+  div.main {
+    width: 90%;
+    margin-left: 5%
+  }
 	</style>
-
-
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -39,11 +52,209 @@
 
     <title>Scholar View</title>
   </head>
+
   <script src="https://www.amcharts.com/lib/4/core.js"></script>
   <script src="https://www.amcharts.com/lib/4/charts.js"></script>
   <script src="https://www.amcharts.com/lib/4/plugins/forceDirected.js"></script>
   <script src="https://www.amcharts.com/lib/4/plugins/wordCloud.js"></script> 
   <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+  <script src="https://www.amcharts.com/lib/4/plugins/timeline.js"></script>
+  <script src="https://www.amcharts.com/lib/4/plugins/bullets.js"></script>
+  <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+
+<!-- Chart code -->
+<script>
+  am4core.ready(function() {
+  
+  // Themes begin
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+  
+  var chart = am4core.create("timeline", am4plugins_timeline.SerpentineChart);
+  chart.curveContainer.padding(100, 20, 50, 20);
+  chart.levelCount = 3;
+  chart.yAxisRadius = am4core.percent(20);
+  chart.yAxisInnerRadius = am4core.percent(2);
+  chart.maskBullets = false;
+  
+  var colorSet = new am4core.ColorSet();
+  
+  chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
+  chart.dateFormatter.dateFormat = "HH";
+  
+  chart.data = [{
+        "category": "",
+        "start": "2007",
+        "end": "2007",
+        "color": colorSet.getIndex(0),
+        "text": "B.S. degree in Computer Science, the University of Tripoli",
+        "icon": "/wp-content/uploads/assets/timeline/timeline5.svg"
+    },
+    {
+        "category": "",
+        "start": "2011",
+        "end": "2011",
+        "color": colorSet.getIndex(1),
+        "text": "M.A. degree in Computer Science, Portland State University",
+        "icon": "/wp-content/uploads/assets/timeline/timeline6.svg"
+    },
+    {
+        "category": "",
+        "start": "2012",
+        "end": "2012",
+        "color": colorSet.getIndex(2),
+        "text": "Graduate Research Assistance Scholarship, Portland State University",
+        "icon": "/wp-content/uploads/assets/timeline/timeline6.svg"
+    },
+    {
+        "category": "",
+        "start": "2013",
+        "end": "2013",
+        "color": colorSet.getIndex(3),
+        "text": "International Student Academic Stand Out from Golden Key from International Honor Society",
+        "icon": "/wp-content/uploads/assets/timeline/timeline6.svg"
+    },
+    {
+        "category": "",
+        "start": "2013",
+        "end": "2013",
+        "color": colorSet.getIndex(4),
+        "text": "Received International Academic Achievement Award, International Honor Society",
+        "icon": "/wp-content/uploads/assets/timeline/timeline6.svg"
+    },
+    {
+        "category": "",
+        "start": "2015",
+        "end": "2015",
+        "color": colorSet.getIndex(5),
+        "text": "President’s Award for University Service, Portland State University.",
+        "icon": "/wp-content/uploads/assets/timeline/timeline6.svg"
+    },
+    {
+        "category": "",
+        "start": "2016",
+        "end": "2016",
+        "color": colorSet.getIndex(6),
+        "text": "Class of 2016 student speaker at PSU commencement ceremony, Portland State University",
+        "icon": "/wp-content/uploads/assets/timeline/timeline7.svg"
+    },
+    {
+        "category": "",
+        "start": "2016",
+        "end": "2016",
+        "color": colorSet.getIndex(7),
+        "text": "Ph.D. degree in Computer Science, Portland State University",
+        "icon": "/wp-content/uploads/assets/timeline/timeline7.svg"
+    },
+    {
+        "category": "",
+        "start": "2016-07",
+        "end": "2018-07",
+        "color": colorSet.getIndex(8),
+        "text": "Postdoctoral Research Fellow, University of Pennsylvania, Computer and Information Science",
+        "icon": "/wp-content/uploads/assets/timeline/timeline7.svg"
+    },
+    {
+        "category": "",
+        "start": "2019",
+        "end": "2019",
+        "color": colorSet.getIndex(9),
+        "text": "U of I campus-wide list of “Teachers Ranked as Excellent by their Students” for Fall, Spring, and Summer of 2019 semesters.",
+        "icon": "/wp-content/uploads/assets/timeline/timeline7.svg"
+    }];
+  
+  chart.fontSize = 10;
+  chart.tooltipContainer.fontSize = 10;
+  
+  var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+  categoryAxis.dataFields.category = "category";
+  categoryAxis.renderer.grid.template.disabled = true;
+  categoryAxis.renderer.labels.template.paddingRight = 25;
+  categoryAxis.renderer.minGridDistance = 10;
+  
+  var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+  dateAxis.renderer.minGridDistance = 70;
+  dateAxis.baseInterval = { count: 30, timeUnit: "minute" };
+  dateAxis.renderer.tooltipLocation = 0;
+  dateAxis.renderer.line.strokeDasharray = "1,4";
+  dateAxis.renderer.line.strokeOpacity = 0.5;
+  dateAxis.tooltip.background.fillOpacity = 0.2;
+  dateAxis.tooltip.background.cornerRadius = 5;
+  dateAxis.tooltip.label.fill = new am4core.InterfaceColorSet().getFor("alternativeBackground");
+  dateAxis.tooltip.label.paddingTop = 7;
+  dateAxis.endLocation = 0;
+  dateAxis.startLocation = -0.5;
+  
+  var labelTemplate = dateAxis.renderer.labels.template;
+  labelTemplate.verticalCenter = "middle";
+  labelTemplate.fillOpacity = 0.4;
+  labelTemplate.background.fill = new am4core.InterfaceColorSet().getFor("background");
+  labelTemplate.background.fillOpacity = 1;
+  labelTemplate.padding(7, 7, 7, 7);
+  
+  var series = chart.series.push(new am4plugins_timeline.CurveColumnSeries());
+  series.columns.template.height = am4core.percent(15);
+  
+  series.dataFields.openDateX = "start";
+  series.dataFields.dateX = "end";
+  series.dataFields.categoryY = "category";
+  series.baseAxis = categoryAxis;
+  series.columns.template.propertyFields.fill = "color"; // get color from data
+  series.columns.template.propertyFields.stroke = "color";
+  series.columns.template.strokeOpacity = 0;
+  series.columns.template.fillOpacity = 0.6;
+  
+  var imageBullet1 = series.bullets.push(new am4plugins_bullets.PinBullet());
+  imageBullet1.locationX = 1;
+  imageBullet1.propertyFields.stroke = "color";
+  imageBullet1.background.propertyFields.fill = "color";
+  imageBullet1.image = new am4core.Image();
+  imageBullet1.image.propertyFields.href = "icon";
+  imageBullet1.image.scale = 0.5;
+  imageBullet1.circle.radius = am4core.percent(100);
+  imageBullet1.dy = -5;
+  
+  
+  var textBullet = series.bullets.push(new am4charts.LabelBullet());
+  textBullet.label.propertyFields.text = "text";
+  textBullet.disabled = true;
+  textBullet.propertyFields.disabled = "textDisabled";
+  textBullet.label.strokeOpacity = 0;
+  textBullet.locationX = 1;
+  textBullet.dy = - 100;
+  textBullet.label.textAlign = "middle";
+  
+  chart.scrollbarX = new am4core.Scrollbar();
+  chart.scrollbarX.align = "center"
+  chart.scrollbarX.width = am4core.percent(75);
+  chart.scrollbarX.opacity = 0.5;
+  
+  var cursor = new am4plugins_timeline.CurveCursor();
+  chart.cursor = cursor;
+  cursor.xAxis = dateAxis;
+  cursor.yAxis = categoryAxis;
+  cursor.lineY.disabled = true;
+  cursor.lineX.strokeDasharray = "1,4";
+  cursor.lineX.strokeOpacity = 1;
+  
+  dateAxis.renderer.tooltipLocation2 = 0;
+  categoryAxis.cursorTooltipEnabled = false;
+  
+  
+  var label = chart.createChild(am4core.Label);
+  label.text = "Timeline of the scholar"
+  label.isMeasured = false;
+  label.y = am4core.percent(40);
+  label.x = am4core.percent(50);
+  label.horizontalCenter = "middle";
+  label.fontSize = 20;
+  
+  }); // end am4core.ready()
+  </script>
+    
+
+
 
   <!-- Keywords Chart code -->
   <script>
@@ -195,7 +406,242 @@
   })
 
   }); // end am4core.ready()
-  </script>
+</script>
+
+<!-- Chart code -->
+<script>
+  am4core.ready(function() {
+  
+  // Themes begin
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+  
+  var chart = am4core.create("pyramid", am4charts.SlicedChart);
+  chart.paddingBottom = 30;
+  chart.data = [{
+    "name": "1",
+    "value": 0
+  }, {
+    "name": "2",
+    "value": 300
+  }, {
+    "name": "3",
+    "value": 200
+  }, {
+    "name": "4",
+    "value": 180
+  },{
+    "name": "5",
+    "value": 400
+  }];
+  
+  var series = chart.series.push(new am4charts.PyramidSeries());
+  series.dataFields.value = "value";
+  series.dataFields.category = "name";
+  series.alignLabels = true;
+  series.valueIs = "height";
+  
+  }); // end am4core.ready()
+</script>
+
+<!-- Chart code -->
+<script>
+  am4core.ready(function() {
+  
+  // Themes begin
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+  
+  var chart = am4core.create("radial", am4charts.RadarChart);
+  chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+  
+  chart.data = [
+    {
+      category: "One",
+      value1: 8,
+      value2: 2,
+      value3: 4,
+      value4: 3
+    },
+    {
+      category: "Two",
+      value1: 11,
+      value2: 4,
+      value3: 2,
+      value4: 4
+    },
+    {
+      category: "Three",
+      value1: 7,
+      value2: 6,
+      value3: 6,
+      value4: 2
+    },
+    {
+      category: "Four",
+      value1: 13,
+      value2: 8,
+      value3: 3,
+      value4: 2
+    },
+    {
+      category: "Five or more",
+      value1: 12,
+      value2: 10,
+      value3: 5,
+      value4: 1
+    }
+  ];
+  
+  //chart.padding(20, 20, 20, 20);
+  chart.colors.step = 4;
+  
+  var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+  categoryAxis.dataFields.category = "category";
+  categoryAxis.renderer.labels.template.location = 0.5;
+  categoryAxis.renderer.labels.template.horizontalCenter = "right";
+  categoryAxis.renderer.grid.template.location = 0;
+  categoryAxis.renderer.tooltipLocation = 0.5;
+  categoryAxis.renderer.grid.template.strokeOpacity = 0.07;
+  categoryAxis.renderer.axisFills.template.disabled = true;
+  categoryAxis.interactionsEnabled = false;
+  categoryAxis.renderer.minGridDistance = 10;
+  
+  var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
+  valueAxis.tooltip.disabled = true;
+  valueAxis.renderer.labels.template.horizontalCenter = "left";
+  valueAxis.min = 0;
+  valueAxis.max = 60;
+  valueAxis.strictMinMax = true;
+  valueAxis.renderer.maxLabelPosition = 0.99;
+  valueAxis.renderer.minGridDistance = 10;
+  valueAxis.renderer.grid.template.strokeOpacity = 0.07;
+  valueAxis.renderer.axisFills.template.disabled = true;
+  valueAxis.interactionsEnabled = false;
+  
+  var series1 = chart.series.push(new am4charts.RadarColumnSeries());
+  series1.columns.template.tooltipText = "{name}: {valueX.value}";
+  series1.name = "Series 1";
+  series1.dataFields.categoryY = "category";
+  series1.dataFields.valueX = "value1";
+  series1.stacked = true;
+  
+  var series2 = chart.series.push(new am4charts.RadarColumnSeries());
+  series2.columns.template.tooltipText = "{name}: {valueX.value}";
+  series2.name = "Series 2";
+  series2.dataFields.categoryY = "category";
+  series2.dataFields.valueX = "value2";
+  series2.stacked = true;
+  
+  var series3 = chart.series.push(new am4charts.RadarColumnSeries());
+  series3.columns.template.tooltipText = "{name}: {valueX.value}";
+  series3.name = "Series 3";
+  series3.dataFields.categoryY = "category";
+  series3.dataFields.valueX = "value3";
+  series3.stacked = true;
+  
+  var series4 = chart.series.push(new am4charts.RadarColumnSeries());
+  series4.columns.template.tooltipText = "{name}: {valueX.value}";
+  series4.name = "Series 4";
+  series4.dataFields.categoryY = "category";
+  series4.dataFields.valueX = "value4";
+  series4.stacked = true;
+  
+  chart.seriesContainer.zIndex = -1;
+  
+  //chart.scrollbarX = new am4core.Scrollbar();
+  //chart.scrollbarX.exportable = false;
+  //chart.scrollbarY = new am4core.Scrollbar();
+  //chart.scrollbarY.exportable = false;
+  
+  chart.cursor = new am4charts.RadarCursor();
+  chart.cursor.lineY.disabled = true;
+  
+  }); // end am4core.ready()
+</script>
+
+
+<script>
+  am4core.ready(function() {
+  
+  // Themes begin
+  am4core.useTheme(am4themes_animated);
+  // Themes end
+  
+  // Create chart instance
+  var chart = am4core.create("barchart", am4charts.XYChart);
+  
+  // Add data
+  chart.data = [{
+    "year": "2016",
+    "europe": 2.5,
+    "namerica": 2.5,
+    "asia": 2.1,
+    "lamerica": 0.3,
+    "meast": 0.2,
+    "africa": 0.1
+  }, {
+    "year": "2017",
+    "europe": 2.6,
+    "namerica": 2.7,
+    "asia": 2.2,
+    "lamerica": 0.3,
+    "meast": 0.3,
+    "africa": 0.1
+  }, {
+    "year": "2018",
+    "europe": 2.8,
+    "namerica": 2.9,
+    "asia": 2.4,
+    "lamerica": 0.3,
+    "meast": 0.3,
+    "africa": 0.1
+  }];
+  
+  chart.legend = new am4charts.Legend();
+  chart.legend.position = "right";
+  
+  // Create axes
+  var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+  categoryAxis.dataFields.category = "year";
+  categoryAxis.renderer.grid.template.opacity = 0;
+  
+  var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
+  valueAxis.min = 0;
+  valueAxis.renderer.grid.template.opacity = 0;
+  valueAxis.renderer.ticks.template.strokeOpacity = 0.5;
+  valueAxis.renderer.ticks.template.stroke = am4core.color("#495C43");
+  valueAxis.renderer.ticks.template.length = 10;
+  valueAxis.renderer.line.strokeOpacity = 0.5;
+  valueAxis.renderer.baseGrid.disabled = true;
+  valueAxis.renderer.minGridDistance = 40;
+  
+  // Create series
+  function createSeries(field, name) {
+    var series = chart.series.push(new am4charts.ColumnSeries());
+    series.dataFields.valueX = field;
+    series.dataFields.categoryY = "year";
+    series.stacked = true;
+    series.name = name;
+    
+    var labelBullet = series.bullets.push(new am4charts.LabelBullet());
+    labelBullet.locationX = 0.5;
+    labelBullet.label.text = "{valueX}";
+    labelBullet.label.fill = am4core.color("#fff");
+  }
+  
+  createSeries("europe", "Europe");
+  createSeries("namerica", "North America");
+  createSeries("asia", "Asia");
+  createSeries("lamerica", "Latin America");
+  createSeries("meast", "Middle East");
+  createSeries("africa", "Africa");
+  
+  }); // end am4core.ready()
+</script>
+
+
+
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -207,11 +653,25 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link" href="#link">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Info</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#bio">Biography</a>
+                <a class="dropdown-item disabled" href="#ed">Education</a>
+                <a class="dropdown-item disabled" href="#ri">Research Interest</a>
+                <a class="dropdown-item disabled" href="#te">Teaching</a>
+                <div role="separator" class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#tl">Timeline</a>
+                <a class="dropdown-item" href="#vis">Visualization</a>
+              </div>
+            </li>
+          </ul>
         </ul>
         <form action="/search" class="form-inline my-2 my-lg-0" method="post">
           <input class="form-control mr-sm-2" type="search" name="user_id" placeholder="Search Scholar" aria-label="Search">
@@ -220,19 +680,62 @@
       </div>
     </nav>
 
-	<img src="UIUC.jpg" alt="Scholar View">
+    <div class="main">
+      <h1 id="bio"> Biography </h1>
+      <div>
+        I am a teaching assistant professor in the Department of Computer Science at The University of Illinois at Urbana-Champaign. My research interests are broadly in the field of databases, with a focus on data management. I am particularly interested in applying machine learning methods to various problems of modern data management systems. I am also interested in CS education research.
+      <div>
+      <div class="card-group">
+        <div class="card">
+          <div class="card-header">
+            Education
+          </div>
+          <div class="card-body" id="ed">
+            <p class="card-text">University of Tripoli, 2002</p>
+            <p class="card-text">Portland State University, 2011</p>
+            <p class="card-text">Portland State University, </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="ri">
+            Research Interest
+          </div>
+          <div class="card-body">
+            <p class="card-text">Data Provenance</p>
+            <p class="card-text">Data Management</p>
+            <p class="card-text">Computer Science Education</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="te">
+            Teaching
+          </div>
+          <div class="card-body">
+            <p class="card-text">CS 411: Database Systems</p>
+          </div>
+        </div>
+    </div>
 
-	<div class="container">
-	  <div class="row">
-	    <div id="keywords" class="col">
-	    </div>
-	    <div id="topjournals" class="col">
-	    </div>
-	    <div id="topauthors" class="col">
-	    </div>
-	  </div>
-	</div>
+    <h1 id="tl"> Timeline </h1>
+    <div id="timeline" class="row"></div>
 
+    <h1> Visualization </h1>
+    <div id="vis" class="container">
+      <div class="row">
+        <div id="keywords" class="col"></div>
+        <div id="topjournals" class="col"></div>
+        <div id="topauthors" class="col"></div>
+      </div>
+      <div class="row">
+        <div id="pyramid" class="col"></div>
+        <div id="radial" class="col"></div>
+        <div id="barchart" class="col"></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
    
   </body>
 </html>
