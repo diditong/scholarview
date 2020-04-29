@@ -18,10 +18,30 @@ for x in cursor:
   print(x)
 
 
+  <form action="/home" method="post"> <center>
+    <input type="text" id="user" name="user_id" value="Abdussalam Alawini"><br>
+    <button type="submit" value="search_from_home" name="btn">
+    </center>
+  </form>
 
-  query3 = ("SELECT authors, cites FROM scholars \
-            NATURAL JOIN writes \
-            NATURAL JOIN articles \
-            WHERE scName = '" + str(sn) + "';")
 
-  for 
+<div class="row justify-content-center">
+  <div class="col-12 col-md-10 col-lg-8">
+    <form action="/home" method="post">
+        <div class="card-body row no-gutters align-items-center">
+            <div class="col-auto">
+                <i class="fas fa-search h4 text-body"></i>
+            </div>
+            <!--end of col-->
+            <div class="col">
+                <input class="form-control form-control-lg form-control-borderless" type="search" id="user" name="user_id" placeholder="Search Scholar">
+            </div>
+            <!--end of col-->
+            <div class="col-auto">
+                <button class="btn btn-lg btn-success" type="submit" value="search_from_home" name="btn">Search</button>
+            </div>
+            <!--end of col-->
+        </div>
+    </form>
+  </div>
+</div>
