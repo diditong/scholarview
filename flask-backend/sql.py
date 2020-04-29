@@ -6,13 +6,6 @@ from pymongo import MongoClient # Python-MongoDB packages
 app = Flask(__name__)
 
 '''
-Connect to MongoDB Database
-'''
-client = MongoClient('mongodb://localhost:27017/')
-db = client['google-scholar-10k']
-collection = db['articles']
-
-'''
 Connect to MySQL Database
 '''
 config = {
@@ -50,9 +43,13 @@ def search():
 
 @app.route("/<scholar_name>")
 def scholar(scholar_name):
-  ### Create data pipelines (MongoDB queries in JSON form)
-  # Create data pipeline to collect key words
+  
   scholar_name = str(scholar_name)
+  ### Find timeline of a scholar from MongoDB
+
+  ### Create data pipelines (SQL queries)
+  # Create data pipeline to collect key words
+  
   cursor = cnx.cursor()
   query1 = ("SELECT title FROM scholars \
             NATURAL JOIN writes \
@@ -226,13 +223,9 @@ def scholar(scholar_name):
   
   numAuthorsPacket["maxNum"] = int(maxNum * 1.1)
 
+
   return render_template('demo.html', data1=keywordsPacket, data2=journalPacket, data3=authorPacket,\
                                       data4=numCitesPacket, data5=numAuthorsPacket, data6=[])
-'''
-cursor.close()
-cnx.close()
-
-'''
   
 if __name__ == '__main__':
   app.run(debug=True)

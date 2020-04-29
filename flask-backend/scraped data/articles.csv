@@ -1,4 +1,4 @@
-﻿aId,cites,authors,title,year,journalName,publisher,articleURL,citesURL,gsRank,ECC,citesPerYear,citesPerAuthor,autorCount,age
+﻿aId,cites,authors,title,year,journalName,publisher,articleURL,citesURL,gsRank,ECC,citesPerYear,citesPerAuthor,,age
 1,13,"J Xu, W Zhang, A Alawini, V Tannen",Provenance Analysis for Missing Answers and Integrity Repairs.,2018,IEEE Data Eng. Bull.,sites.computer.org,http://sites.computer.org/debull/A18mar/p39.pdf,"https://scholar.google.com/scholar?cites=1795073272061825421&as_sdt=2005&sciodt=0,5&hl=en",1,13,6.5,3,4,2
 2,12,"Y Wu, A Alawini, SB Davidson, G Silvello",Data citation: giving credit where credit is due,2018,Proceedings of the 2018 …,dl.acm.org,https://dl.acm.org/doi/abs/10.1145/3183713.3196910,"https://scholar.google.com/scholar?cites=15514372004683913565&as_sdt=2005&sciodt=0,5&hl=en",2,12,6,3,4,2
 3,8,"A Alawini, D Maier, K Tufte, B Howe",Helping scientists reconnect their datasets,2014,Proceedings of the 26th …,dl.acm.org,https://dl.acm.org/doi/abs/10.1145/2618243.2618263,"https://scholar.google.com/scholar?cites=14965724135008644272&as_sdt=2005&sciodt=0,5&hl=en",3,8,1.33,2,4,6
