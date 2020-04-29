@@ -75,7 +75,7 @@ def scholar(scholar_name):
       "coauthors": list(db.articles.aggregate(pipeline3)),
       "initials": "".join([name[0] for name in scholar_name.split(" ")])}]
   
-  # Add other catefory to journals data
+  # Add other category to journals data
   other = {'journalName': 'others' , \
   'numPapers': sum([record['numPapers'] for record in journals[5:]])}
   journals = journals[:5] + [other]
@@ -86,7 +86,7 @@ def scholar(scholar_name):
     initials = "".join([name[0] for name in nameList])
     item["initials"] = initials
 
-  return render_template('demo.html', data1=keywords, data2=journals, data3=coauthors, )
+  return render_template('demo.html', data1=keywords, data2=journals, data3=coauthors)
   
 if __name__ == '__main__':
   app.run(debug=True)
