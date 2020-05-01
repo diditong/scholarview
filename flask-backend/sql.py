@@ -14,7 +14,7 @@ config = {
   'host': '127.0.0.1',
   'database': 'uiuc_scholars'
 }
-cnx = mysql.connector.connect(**config)
+connection = mysql.connector.connect(**config)
 print("Connected to MySQL successfully!")
 
 '''
@@ -25,10 +25,30 @@ Home Page of Google Scholar Visulization
 def home():
   if request.method == "POST":
     if request.form['btn'] == 'search_from_home':
-      user_id = request.form['user_id']
-      return redirect(url_for("scholar", scholar_name=user_id))
+      sname = request.form['sname']
+      return redirect(url_for("scholar", scholar_name=sname))
+    elif request.form['btn'] == 'sign_up':
+      usrname = request.form['usrname']
+      psw = request.form['psw']
+      cursor = connection.cursor()
+      insert_query = "INSERT INTO users (usrname, psw) VALUES ('"+ usrname + "','"+ psw + "');"
+      cursor.execute(insert_query)
+      connection.commit()
+      return render_template("home.html", login_status="not yet", just_signed="yes")
+    elif request.form['btn'] == 'sign_in':
+      usrname = request.form['usrname']
+      psw = request.form['psw']
+      cursor = connection.cursor()
+      search_query = "SELECT psw FROM users WHERE usrname ='"+ usrname +"';"
+      cursor.execute(search_query)
+      for x in cursor:
+        secret = x[0]
+      if psw == secret:
+        return render_template("home.html", login_status="successful", just_signed="no", user=usrname)
+      else:
+        return render_template("home.html", login_status="failed", just_signed="no")
   else:
-    return render_template("home.html")
+    return render_template("home.html", login_status="not yet", just_signed="no")
 
 '''
 Scholar's Individual Page
@@ -37,20 +57,36 @@ Scholar's Individual Page
 def search():
   if request.method == "POST":
     if request.form['btn'] == 'search_from_user':
-      user_id = request.form['user_id']
-      return redirect(url_for("scholar", scholar_name=user_id))
-
+      sname = request.form['sname']
+      return redirect(url_for("scholar", scholar_name=sname))
 
 @app.route("/<scholar_name>")
 def scholar(scholar_name):
-  
+
   scholar_name = str(scholar_name)
   ### Find timeline of a scholar from MongoDB
 
   ### Create data pipelines (SQL queries)
   # Create data pipeline to collect key words
   
-  cursor = cnx.cursor()
+  cursor = connection.cursor()
+  describe = "DESCRIBE scholars;"
+  cursor.execute(describe)
+  schema = []
+  for tuple in cursor:
+    schema.append(tuple[0])
+  
+  query0 = "SELECT * FROM scholars WHERE scName = '" + scholar_name + "';"
+  cursor.execute(query0)
+  info = []
+  for tuple in cursor:
+    for i in range(len(tuple)):
+      info.append(tuple[i])
+  
+  basicInfoPacket = {}
+  for i in range(len(schema)):
+    basicInfoPacket[schema[i]] = info[i]
+
   query1 = ("SELECT title FROM scholars \
             NATURAL JOIN writes \
             NATURAL JOIN articles \
@@ -149,10 +185,10 @@ def scholar(scholar_name):
                 "initials": "".join([name[0] for name in scholar_name.split(" ")])}]
   
   # Compute number of citations for top 10% papers, top 30% papers, etc. 
-  query45 = ("SELECT aId, cites, autorCount FROM scholars \
-          NATURAL JOIN writes \
-          NATURAL JOIN articles \
-          WHERE scName = '" + scholar_name + "';")
+  query45 = ("SELECT aId, cites, authorCount FROM scholars \
+            NATURAL JOIN writes \
+            NATURAL JOIN articles \
+            WHERE scName = '" + scholar_name + "';")
 
   cursor.execute(query45)
   records = []
@@ -223,9 +259,8 @@ def scholar(scholar_name):
   
   numAuthorsPacket["maxNum"] = int(maxNum * 1.1)
 
-
   return render_template('demo.html', data1=keywordsPacket, data2=journalPacket, data3=authorPacket,\
-                                      data4=numCitesPacket, data5=numAuthorsPacket, data6=[])
+                                      data4=numCitesPacket, data5=numAuthorsPacket, data6=[], info=basicInfoPacket)
   
 if __name__ == '__main__':
   app.run(debug=True)

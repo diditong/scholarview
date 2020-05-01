@@ -69,7 +69,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
-
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <title>Scholar View</title>
   </head>
 
@@ -633,7 +633,7 @@
           </ul>
         </ul>
         <form action="/search" class="form-inline my-2 my-lg-0" method="post">
-          <input class="form-control mr-sm-2" type="search" name="user_id" placeholder="Search Scholar" aria-label="Search">
+          <input class="form-control mr-sm-2" type="search" name="sname" placeholder="Search Scholar" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="search_from_user" name="btn">Search</button>
         </form>
       </div>
@@ -643,7 +643,7 @@
       <h1 class="section"> BIOGRAPHY </h1>
       <div class="biorow">
         <img src="/static/img_avatar.png" class="avatar" alt="">
-        <div class="overflow-auto"> Abdussalam Alawini received the B.S. degree in Computer Science from the University of Tripoli in 2002, and the M.A. and Ph.D. degrees in Computer Science from Portland State University in 2011 and 2016. Dr. Alawini is a teaching assistant professor with the Department of Computer Science at the University of Illinois at Urbana-Champaign. Dr. Alawini’s research interests are broadly in the field of databases, with a focus on scientific data management. He is particularly interested in applying machine learning methods to various problems of modern data management systems, including data provenance, data citation and managing file-based datasets.
+        <div id='bio' class="overflow-auto">
         </div>
       </div>
       <div class="card-group biorow">
@@ -652,9 +652,9 @@
             Education
           </div>
           <div class="card-body" id="ed">
-            <p class="card-text">University of Tripoli, 2002</p>
-            <p class="card-text">Portland State University, 2011</p>
-            <p class="card-text">Portland State University, 2016</p>
+            <p id="bs" class="card-text"></p>
+            <p id="ms" class="card-text"></p>
+            <p id="phd" class="card-text"></p>
           </div>
         </div>
         <div class="card">
@@ -662,9 +662,9 @@
             Research Interest
           </div>
           <div class="card-body">
-            <p class="card-text">Data Provenance</p>
-            <p class="card-text">Data Management</p>
-            <p class="card-text">Computer Science Education</p>
+            <p id="ri1" class="card-text"></p>
+            <p id="ri2" class="card-text"></p>
+            <p id="ri3" class="card-text"></p>
           </div>
         </div>
         <div class="card">
@@ -672,7 +672,9 @@
             Teaching
           </div>
           <div class="card-body">
-            <p class="card-text">CS 411: Database Systems</p>
+            <p id="t1" class="card-text"></p>
+            <p id="t2" class="card-text"></p>
+            <p id="t3" class="card-text"></p>
           </div>
         </div>
     </div>
@@ -694,6 +696,21 @@
       </div>
     </div>
   </div>
+
+  <script>
+    var basic_info = JSON.parse('{{info | tojson}}');
+    document.getElementById("bio").innerHTML = basic_info["biography"];
+    document.getElementById("bs").innerHTML = basic_info["bsSchool"]+ ", " +basic_info["bsYear"];
+    document.getElementById("ms").innerHTML = basic_info["msSchool"]+ ", " +basic_info["msYear"];
+    document.getElementById("phd").innerHTML = basic_info["phdSchool"]+ ", " +basic_info["phdYear"];
+    document.getElementById("ri1").innerHTML = basic_info["interest1"];
+    document.getElementById("ri2").innerHTML = basic_info["interest2"];
+    document.getElementById("ri3").innerHTML = basic_info["interest3"];
+    document.getElementById("t1").innerHTML = basic_info["teaching1"];
+    document.getElementById("t2").innerHTML = basic_info["teaching2"];
+    document.getElementById("t3").innerHTML = basic_info["teaching3"];
+  </script>
+
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
