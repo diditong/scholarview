@@ -1,5 +1,5 @@
 import pprint # data pretty printer
-from flask import Flask, redirect, url_for, request, render_template, g # Flask web framework
+from flask import Flask, redirect, url_for, request, render_template # Flask web framework
 import mysql.connector
 from pymongo import MongoClient # Python-MongoDB packages
 
@@ -17,12 +17,6 @@ config = {
 connection = mysql.connector.connect(**config)
 print("Connected to MySQL successfully!")
 
-
-
-@app.before_request
-def load_user():
-    g.user = None
-
 '''
 Home Page of Google Scholar Visulization
 '''
@@ -37,36 +31,26 @@ def home():
       usrname = request.form['usrname']
       psw = request.form['psw']
       cursor = connection.cursor()
-      cursor.callproc('createUser', [usrname, psw])
-      for response in cursor.stored_results():
-        response = response.fetchall()[0][0]
-      if response == 0:
-        print("Signup failed.")
-        return render_template("home.html", login_status="not yet", signup_status="failed")
-      elif response == 1:
-        print("Signup successful: ", usrname)
-        connection.commit()
-        return render_template("home.html", login_status="not yet", signup_status="successful")
+      insert_query = "INSERT INTO users (usrname, psw) VALUES ('"+ usrname + "','"+ psw + "');"
+      cursor.execute(insert_query)
+      connection.commit()
+      return render_template("home.html", login_status="not yet", just_signed="yes")
     elif request.form['btn'] == 'sign_in':
+      logged_in_user = None
       usrname = request.form['usrname']
       psw = request.form['psw']
       cursor = connection.cursor()
-      cursor.callproc('checkinUser', [usrname, psw])
-      for response in cursor.stored_results():
-        response = response.fetchall()[0][0]
-      if response == 0:
-        return render_template("home.html", login_status="wrong_pass", signup_status="idle")
-      elif response == 1:
-        g.user = usrname
-        return render_template("home.html", login_status="successful", signup_status="idle", user=g.user)
-      elif response == 2:
-        return render_template("home.html", login_status="user_dne", signup_status="idle")
-    elif request.form['btn'] == 'sign_out':
-      g.user = None
-      print("Signed out, current user: ", g.user)
-      return render_template("home.html", login_status="not yet", signup_status="idle")
+      search_query = "SELECT psw FROM users WHERE usrname ='"+ usrname +"';"
+      cursor.execute(search_query)
+      for x in cursor:
+        secret = x[0]
+      if psw == secret:
+        logged_in_user = usrname
+        return render_template("home.html", login_status="successful", just_signed="no", user=usrname)
+      else:
+        return render_template("home.html", login_status="failed", just_signed="no")
   else:
-    return render_template("home.html", login_status="not yet", signup_status="idle")
+    return render_template("home.html", login_status="not yet", just_signed="no")
 
 '''
 Scholar's Individual Page
