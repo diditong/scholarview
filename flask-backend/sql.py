@@ -59,6 +59,25 @@ def search():
     if request.form['btn'] == 'search_from_user':
       sname = request.form['sname']
       return redirect(url_for("scholar", scholar_name=sname))
+    elif request.form['btn'] == 'submit_votes':
+      sname = "Abdussalam Alawini"
+      eval1 = request.form['stars1']
+      eval2 = request.form['stars2']
+      eval3 = request.form['stars3']
+      eval4 = request.form['stars3']
+      eval5 = request.form['stars3']
+      print("LOOK AT HERE!!!!!!!!!!!!!!!!!!!!!!", eval1, eval2)
+      return redirect(url_for("scholar", scholar_name=sname))
+
+@app.route("/submit", methods=["GET", "POST"])
+def submit():
+  if request.method == "POST":
+    if request.form['btn'] == 'submit _form':
+      eval1 = request.form['stars1']
+      eval2 = request.form['stars2']
+      print("LOOK AT HERE!!!!!!!!!!!!!!!!!!!!!!1", eval1, eval2)
+      return redirect(url_for("scholar", scholar_name="Abdussalam Alawini"))
+
 
 @app.route("/<scholar_name>")
 def scholar(scholar_name):
@@ -68,7 +87,10 @@ def scholar(scholar_name):
 
   ### Create data pipelines (SQL queries)
   # Create data pipeline to collect key words
-  
+  if request.method == "POST":
+    if request.form['btn'] == 'submit_form':
+      print(request.form['stars1'])
+
   cursor = connection.cursor()
   describe = "DESCRIBE scholars;"
   cursor.execute(describe)
@@ -262,6 +284,8 @@ def scholar(scholar_name):
   return render_template('demo.html', data1=keywordsPacket, data2=journalPacket, data3=authorPacket,\
                                       data4=numCitesPacket, data5=numAuthorsPacket, data6=[], info=basicInfoPacket)
   
+
+
 if __name__ == '__main__':
   app.run(debug=True)
 

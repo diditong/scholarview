@@ -64,6 +64,13 @@
         transform: translate(-50%, -50%);
       }
 
+      #welcome {
+        margin-top: 10px;
+        margin-right: 10px;
+        float: right;
+        font: Helvetica;
+        font-size: 12;
+      }
 
       body {font-family: Arial, Helvetica, sans-serif;}
       * {box-sizing: border-box;}
@@ -172,6 +179,7 @@
   <button id="signin_btn" class="account" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign In</button>
   <button id="signup_btn" class="account" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Sign Up</button>
   <button id="signout_btn" class="account" onclick="showButtons()" style="width:auto;">Sign Out</button>
+  <div id="welcome"></div>
 
   <center><img class="logo" src="/static/logo.svg"></center>
 
@@ -196,7 +204,7 @@
         <input class="text" placeholder="Enter Username" name="usrname" required>
 
         <label for="psw"><b>Password</b></label>
-        <input class="text" placeholder="Enter Password" name="psw" required>
+        <input type="password" class="text" placeholder="Enter Password" name="psw" required>
 
         <div class="clearfix">
           <button type="submit" class="signButton" name="btn" value="sign_in">Sign In</button>
@@ -217,7 +225,7 @@
         <input class="text" placeholder="Enter Username" name="usrname" required>
 
         <label for="psw"><b>Password</b></label>
-        <input class="text" placeholder="Enter Password" name="psw" required>
+        <input type="password" class="text" placeholder="Enter Password" name="psw" required>
 
         <div class="clearfix">
           <button type="submit" class="signButton" name="btn" value="sign_up">Sign Up</button>
@@ -238,11 +246,14 @@
   if (status==="successful") {
     document.getElementById("signin_btn").style.display = "none";
     document.getElementById("signup_btn").style.display = "none";
-    document.getElementById("signout_btn").style.display = "block";
-    console.log('{{user}}');
+    document.getElementById("signout_btn").style.display = "inline";
+    document.getElementById("welcome").innerHTML = "Hello, " + '{{user}}.';
   }
   else if (status==="failed"){
     alert("Login failed: Password is not correct.");
+    document.getElementById("signin_btn").style.display = "inline";
+    document.getElementById("signup_btn").style.display = "inline";
+    document.getElementById("signout_btn").style.display = "none";
   }
   else if (status==="not yet"){
     document.getElementById("signout_btn").style.display = "none";
@@ -250,13 +261,14 @@
 
   function showButtons() {
     status = "not yet";
-    document.getElementById("signin_btn").style.display = "block";
-    document.getElementById("signup_btn").style.display = "block";
+    document.getElementById("signin_btn").style.display = "inline";
+    document.getElementById("signup_btn").style.display = "inline";
     document.getElementById("signout_btn").style.display = "none";
+    document.getElementById("welcome").style.display = "none";
   }
   // Get the modal
-  var modal1 = document.getElementById('signin_btn');
-  var modal2 = document.getElementById('signup_btn');
+  var modal1 = document.getElementById('id01');
+  var modal2 = document.getElementById('id02');
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
