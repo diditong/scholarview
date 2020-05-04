@@ -289,27 +289,27 @@ def scholar(scholar_name):
 
   numAuthorsPacket = {
                     "data":
-                    [{"category": "One Author",
+                    [{"category": "1 Author",
                       "top10": 0,
                       "next20": 0,
                       "next70": 0
                     },
-                    {"category": "Two Authors",
+                    {"category": "2 Authors",
                       "top10": 0,
                       "next20": 0,
                       "next70": 0
                     },
-                    {"category": "Three Authors",
+                    {"category": "3 Authors",
                       "top10": 0,
                       "next20": 0,
                       "next70": 0
                     },
-                    {"category": "Four Authors",
+                    {"category": "4 Authors",
                       "top10": 0,
                       "next20": 0,
                       "next70": 0
                     },
-                    {"category": "Five or More",
+                    {"category": "5+ Authors",
                       "top10": 0,
                       "next20": 0,
                       "next70": 0
@@ -333,12 +333,32 @@ def scholar(scholar_name):
   for numAuthors in numAuthorsPacket["data"]:
     maxNum = max(maxNum, numAuthors["top10"]+numAuthors["next20"]+numAuthors["next70"])
   
-  numAuthorsPacket["maxNum"] = int(maxNum * 1.1)
+  numAuthorsPacket["maxNum"] = int(maxNum * 1.3)
+
+  numList = [0] * 10
+  query6 = ("SELECT citesPerYear FROM scholars \
+            NATURAL JOIN writes \
+            NATURAL JOIN articles \
+            WHERE scName = '" + scholar_name + "';")
+
+  cursor.execute(query6)
+  for tuple in cursor:
+    yearlyCites = tuple[0]
+    if (yearlyCites > 0) and (yearlyCites < 10):
+      numList[yearlyCites-1] += 1
+    elif (yearlyCites >= 10):
+      numList[9] += 1
+
+  distList = []
+  for i in range(len(numList)):
+    distList.append({"category":str(i+1), "value":str(numList[i])})
+
+  print(distList)
 
   return render_template('demo.html', user = user, scholar_name = scholar_name, rated = rated,\
                                       info=basicInfoPacket, timeline=timeline,\
                                       data1=keywordsPacket, data2=journalPacket, data3=authorPacket,\
-                                      data4=numCitesPacket, data5=numAuthorsPacket, data6=[])
+                                      data4=numCitesPacket, data5=numAuthorsPacket, data6=distList)
   
 
 

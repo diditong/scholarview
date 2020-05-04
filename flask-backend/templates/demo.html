@@ -39,9 +39,9 @@
     height: 400px;
   }
 
-  #barchart {
+  #distribution {
     width: 100%;
-    height: 400px;s
+    height: 400px;
   }
 
   .desc {
@@ -543,6 +543,7 @@
   }); // end am4core.ready()
 </script>
 
+
 <!-- Chart code -->
 <script>
   am4core.ready(function() {
@@ -577,7 +578,7 @@
   valueAxis.max = packet["maxNum"];
   valueAxis.strictMinMax = true;
   valueAxis.renderer.maxLabelPosition = 0.99;
-  valueAxis.renderer.minGridDistance = 10;
+  valueAxis.renderer.minGridDistance = 50;
   valueAxis.renderer.grid.template.strokeOpacity = 0.07;
   valueAxis.renderer.axisFills.template.disabled = true;
   valueAxis.interactionsEnabled = false;
@@ -617,7 +618,6 @@
   }); // end am4core.ready()
 </script>
 
-
 <script>
   am4core.ready(function() {
   
@@ -626,80 +626,66 @@
   // Themes end
   
   // Create chart instance
-  var chart = am4core.create("barchart", am4charts.XYChart);
-  
-  // Add data
-  chart.data = [{
-    "year": "2016",
-    "europe": 2.5,
-    "namerica": 2.5,
-    "asia": 2.1,
-    "lamerica": 0.3,
-    "meast": 0.2,
-    "africa": 0.1
-  }, {
-    "year": "2017",
-    "europe": 2.6,
-    "namerica": 2.7,
-    "asia": 2.2,
-    "lamerica": 0.3,
-    "meast": 0.3,
-    "africa": 0.1
-  }, {
-    "year": "2018",
-    "europe": 2.8,
-    "namerica": 2.9,
-    "asia": 2.4,
-    "lamerica": 0.3,
-    "meast": 0.3,
-    "africa": 0.1
-  }];
-  
-  chart.legend = new am4charts.Legend();
-  chart.legend.position = "down";
+  var chart = am4core.create("distribution", am4charts.RadarChart);
+  //chart.scrollbarX = new am4core.Scrollbar();
+
+  chart.data = JSON.parse('{{data6 | tojson}}');
+
+  chart.radius = am4core.percent(100);
+  chart.innerRadius = am4core.percent(50);
   
   // Create axes
-  var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
-  categoryAxis.dataFields.category = "year";
-  categoryAxis.renderer.grid.template.opacity = 0;
+  var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+  categoryAxis.dataFields.category = "category";
+  categoryAxis.renderer.grid.template.location = 0;
+  categoryAxis.renderer.minGridDistance = 30;
+  categoryAxis.tooltip.disabled = true;
+  categoryAxis.renderer.minHeight = 110;
+  categoryAxis.renderer.grid.template.disabled = true;
+  //categoryAxis.renderer.labels.template.disabled = true;
+  let labelTemplate = categoryAxis.renderer.labels.template;
+  labelTemplate.radius = am4core.percent(-60);
+  labelTemplate.location = 0.5;
+  labelTemplate.relativeRotation = 90;
   
-  var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
-  valueAxis.min = 0;
-  valueAxis.renderer.grid.template.opacity = 0;
-  valueAxis.renderer.ticks.template.strokeOpacity = 0.5;
-  valueAxis.renderer.ticks.template.stroke = am4core.color("#495C43");
-  valueAxis.renderer.ticks.template.length = 10;
-  valueAxis.renderer.line.strokeOpacity = 0.5;
-  valueAxis.renderer.baseGrid.disabled = true;
-  valueAxis.renderer.minGridDistance = 40;
+  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+  valueAxis.renderer.grid.template.disabled = true;
+  valueAxis.renderer.labels.template.disabled = true;
+  valueAxis.tooltip.disabled = true;
   
   // Create series
-  function createSeries(field, name) {
-    var series = chart.series.push(new am4charts.ColumnSeries());
-    series.dataFields.valueX = field;
-    series.dataFields.categoryY = "year";
-    series.stacked = true;
-    series.name = name;
-    
-    var labelBullet = series.bullets.push(new am4charts.LabelBullet());
-    labelBullet.locationX = 0.5;
-    labelBullet.label.text = "{valueX}";
-    labelBullet.label.fill = am4core.color("#fff");
-  }
+  var series = chart.series.push(new am4charts.RadarColumnSeries());
+  series.sequencedInterpolation = true;
+  series.dataFields.valueY = "value";
+  series.dataFields.categoryX = "category";
+  series.columns.template.strokeWidth = 0;
+  series.tooltipText = "{valueY}";
+  series.columns.template.radarColumn.cornerRadius = 10;
+  series.columns.template.radarColumn.innerCornerRadius = 0;
   
-  createSeries("europe", "Europe");
-  createSeries("namerica", "North America");
-  createSeries("asia", "Asia");
-  createSeries("lamerica", "Latin America");
-  createSeries("meast", "Middle East");
-  createSeries("africa", "Africa");
+  series.tooltip.pointerOrientation = "vertical";
+  
+  // on hover, make corner radiuses bigger
+  let hoverState = series.columns.template.radarColumn.states.create("hover");
+  hoverState.properties.cornerRadius = 0;
+  hoverState.properties.fillOpacity = 1;
+  
+  
+  series.columns.template.adapter.add("fill", function(fill, target) {
+    return chart.colors.getIndex(target.dataItem.index);
+  })
+  
+  // Cursor
+  chart.cursor = new am4charts.RadarCursor();
+  chart.cursor.innerRadius = am4core.percent(50);
+  chart.cursor.lineY.disabled = true;
   
   }); // end am4core.ready()
-</script>
+  </script>
 
 
   <body>
-    <nav class="navbar sticky-top navbar-expand-lg nav-light" style="background-color:#13294B;">
+    <nav class="navbar sticky-top navbar-expand" style="background-color:#13294B;">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -714,10 +700,6 @@
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color:white;">Info</a>
               <div class="dropdown-menu" style="background-color:#13294B;">
                 <a class="dropdown-item" href="#biography" style="color:white;">Biography</a>
-                <a class="dropdown-item disabled" href="#ed">Education</a>
-                <a class="dropdown-item disabled" href="#ri">Research Interest</a>
-                <a class="dropdown-item disabled" href="#te">Teaching</a>
-                <div role="separator" class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#tl" style="color:white;">Timeline</a>
                 <a class="dropdown-item" href="#visualization" style="color:white;">Visualization</a>
                 <a class="dropdown-item" href="#evaluation" style="color:white;">Evaluation</a>
@@ -803,22 +785,22 @@
       </div>
       <div class="row">
         <div class="col mx-1 mb-2 desc">
-          <h6 id="ba"></h6>
-          <div id="barchart"></div>
-        </div>
-        <div class="col mx-1 mb-2 desc">
           <h6 id="cj"></h6>
           <div id="pyramid"></div>
+        </div>
+        <div class="col mx-1 mb-2 desc">
+          <h6 id="ra"></h6>
+          <div id="radial"></div>
         </div>
       </div>
       <div class="row">
         <div class="col mx-1 desc">
-          <h6 id="ts"></h6>
-          <div id="topauthors"></div>
+          <h6 id="dt"></h6>
+          <div id="distribution"></div>
         </div>
         <div class="col mx-1 desc">
-          <h6 id="ra"></h6>
-          <div id="radial"></div>
+          <h6 id="ts"></h6>
+          <div id="topauthors"></div>
         </div>
       </div>
 
@@ -828,8 +810,8 @@
         document.getElementById("tj").innerHTML=scholarName + "'s favorite publishers:";
         document.getElementById("ts").innerHTML="Scholars who have published with " + scholarName + ":";
         document.getElementById("cj").innerHTML="Citation percentage of " + scholarName + "'s top journals:";
-        document.getElementById("ra").innerHTML="radialcharts";
-        document.getElementById("ba").innerHTML="barcharts";
+        document.getElementById("ra").innerHTML="# papers of " + scholarName + " by # of authors";
+        document.getElementById("dt").innerHTML="# papers of " + scholarName + " by yearly citations";
       </script>
 
   <h1 id="evaluation" class="section" style="margin-top: 40px; margin-bottom: 40px;"> EVALUATION </h1>
