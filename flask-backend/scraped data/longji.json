@@ -1,0 +1,505 @@
+Jeff Erickson
+[{
+    "category": "",
+    "start": "1987",
+    "end": "1987",
+    "color": colorSet.getIndex(0),
+    "text": "B.A., Computer Science and Mathematical Sciences (double major), Rice University",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "1992",
+    "end": "1992",
+    "color": colorSet.getIndex(1),
+    "text": "M.S., Information and Computer Science, University of California, Irvine",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "1996",
+    "end": "1996",
+    "color": colorSet.getIndex(2),
+    "text": "Ph.D., Computer Science, University of California, Berkeley",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+}];
+
+Edgar Solomonik
+[{
+    "category": "",
+    "start": "2010",
+    "end": "2010",
+    "color": colorSet.getIndex(0),
+    "text": "BS, University of Illinois at Urbana-Champaign",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2014",
+    "end": "2014",
+    "color": colorSet.getIndex(1),
+    "text": "PhD, University of California Berkeley",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+}];
+
+Elsa Gunter
+[{
+    "category": "",
+    "start": "1987",
+    "end": "1987",
+    "color": colorSet.getIndex(0),
+    "text": "Ph.D., Mathematics, University of Wisconsin",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+}]
+
+Eric Shaffer
+[{
+    "category": "",
+    "start": "1992",
+    "end": "1992",
+    "color": colorSet.getIndex(0),
+    "text": "BS, Mathematics and Computer Science, University of Illinois at Urbana-Champaign",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "1996",
+    "end": "1996",
+    "color": colorSet.getIndex(1),
+    "text": "MS, Computer Science, University of Minnesota",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2005",
+    "end": "2005",
+    "color": colorSet.getIndex(2),
+    "text": "PhD, Computer Science, University of Illinois at Urbana-Champaign",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+}]
+
+Karrie Karahalios
+
+[{
+    "category": "",
+    "start": "2004",
+    "end": "2004",
+    "color": colorSet.getIndex(0),
+    "text": "Ph.D., Media Arts and Sciences, Massachusetts Institute of Technology",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+}]
+
+Tarek Abdelzaher
+
+[{
+    "category": "",
+    "start": "1999",
+    "end": "1999",
+    "color": colorSet.getIndex(0),
+    "text": "Ph.D. in Computer Science from the University of Michigan",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2011",
+    "end": "2011",
+    "color": colorSet.getIndex(1),
+    "text": "the Xerox Award for Faculty Research",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2012",
+    "end": "2012",
+    "color": colorSet.getIndex(2),
+    "text": "recipient of the IEEE Outstanding Technical Achievement and Leadership Award in Real-time Systems",
+    "icon": "/static/winner-with-trophy.svg"
+}]
+
+Vikram Adve
+
+[{
+    "category": "",
+    "start": "1993",
+    "end": "1993",
+    "color": colorSet.getIndex(0),
+    "text": "Ph.D. in Computer Science from University of Wisconsin-Madison",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2001",
+    "end": "2001",
+    "color": colorSet.getIndex(1),
+    "text": "NSF CAREER Award, $499,211",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2002",
+    "end": "2002",
+    "color": colorSet.getIndex(2),
+    "text": "C. W. Gear Outstanding Junior Faculty Award, Computer Science Dept., UIUC",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2012",
+    "end": "2012",
+    "color": colorSet.getIndex(3),
+    "text": "ACM Software System Award",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2014",
+    "end": "2014",
+    "color": colorSet.getIndex(4),
+    "text": "Fellow of the Association for Computing Machinery (ACM)",
+    "icon": "/static/winner-with-trophy.svg"
+}]
+
+Nancy Amato
+
+[{
+    "category": "",
+    "start": "1986",
+    "end": "1986",
+    "color": colorSet.getIndex(0),
+    "text": "B.S. in Mathematical Sciences, Stanford University",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "1988",
+    "end": "1988",
+    "color": colorSet.getIndex(1),
+    "text": "M.S. in Computer Science, University of California at Berkeley",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "1995",
+    "end": "1995",
+    "color": colorSet.getIndex(2),
+    "text": "Ph.D. in Computer Science, University of Illinois at Urbana-Champaign",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+}]
+
+Brian Bailey
+
+[{
+    "category": "",
+    "start": "2002",
+    "end": "2002",
+    "color": colorSet.getIndex(0),
+    "text": "University of Minnesota Ph.D. in Computer Science ",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+}]
+
+Adam Bates
+
+[{
+    "category": "",
+    "start": "2006",
+    "end": "2006",
+    "color": colorSet.getIndex(0),
+    "text": "B.Sc., Computer Science, University of Maryland",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2012",
+    "end": "2012",
+    "color": colorSet.getIndex(1),
+    "text": "M.Sc, Computer Science, University of Oregon",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2016",
+    "end": "2016",
+    "color": colorSet.getIndex(2),
+    "text": "Ph.D., Computer Science, University of Florida",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2017",
+    "end": "2017",
+    "color": colorSet.getIndex(3),
+    "text": "ACM SIGSAC Doctoral Dissertation Award Runner-Up",
+    "icon": "/static/winner-with-trophy.svg"
+}]
+
+Mattox Alan Beckman
+
+[{
+    "category": "",
+    "start": "1993",
+    "end": "1993",
+    "color": colorSet.getIndex(0),
+    "text": "BS in Math and Computer Science / University of Illinois at Urbana",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2003",
+    "end": "2003",
+    "color": colorSet.getIndex(1),
+    "text": "PhD in Computer Science / University of Illinois at Urbana",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2006",
+    "end": "2006",
+    "color": colorSet.getIndex(2),
+    "text": "Teacher of the Year / Illinois Institute of Technology",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2015",
+    "end": "2015",
+    "color": colorSet.getIndex(3),
+    "text": "Teaching Fellow / Illinois Institute of Technology",
+    "icon": "/static/winner-with-trophy.svg"
+}]
+
+Marco Caccamo
+[{
+    "category": "",
+    "start": "2018",
+    "end": "2018",
+    "color": colorSet.getIndex(0),
+    "text": "IEEE Fellow, \"For contributions to the theory and applications of hard real-time multicore computing\"",
+    "icon": "/static/winner-with-trophy.svg"
+}]
+
+Geoffrey Challen
+
+[{
+    "category": "",
+    "start": "2003",
+    "end": "2003",
+    "color": colorSet.getIndex(0),
+    "text": "AB Physics, Harvard University",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2010",
+    "end": "2010",
+    "color": colorSet.getIndex(1),
+    "text": "Ph.D. Computer Science, Harvard University",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+}]
+
+Timothy Chan found nothing
+
+Kevin Chang
+
+[{
+    "category": "",
+    "start": "2000",
+    "end": "2000",
+    "color": colorSet.getIndex(0),
+    "text": "Best Paper Selections in VLDB",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2002",
+    "end": "2002",
+    "color": colorSet.getIndex(1),
+    "text": "NSF CAREER Award",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2003",
+    "end": "2003",
+    "color": colorSet.getIndex(2),
+    "text": "NCSA Faculty Fellow Award",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2004",
+    "end": "2004",
+    "color": colorSet.getIndex(3),
+    "text": "IBM Faculty Awards",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2005",
+    "end": "2005",
+    "color": colorSet.getIndex(4),
+    "text": "IBM Faculty Awards",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2008",
+    "end": "2008",
+    "color": colorSet.getIndex(5),
+    "text": "Academy for Entrepreneurial Leadership Faculty Fellow Award",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2013",
+    "end": "2013",
+    "color": colorSet.getIndex(6),
+    "text": "Best Paper Selections in VLDB",
+    "icon": "/static/winner-with-trophy.svg"
+}]
+
+Chandra Chekuri nothing found
+
+Neal Davis
+
+[{
+    "category": "",
+    "start": "2008",
+    "end": "2008",
+    "color": colorSet.getIndex(0),
+    "text": "B.S., Chemical Engineering, Brigham Young University",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2011",
+    "end": "2011",
+    "color": colorSet.getIndex(1),
+    "text": "M.S., Nuclear Engineering, University of Illinois",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2013",
+    "end": "2013",
+    "color": colorSet.getIndex(2),
+    "text": "Ph.D., Nuclear Engineering, University of Illinois",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+}]
+
+Mohammed El-Kebir
+[{
+    "category": "",
+    "start": "2006",
+    "end": "2006",
+    "color": colorSet.getIndex(0),
+    "text": "B.S., Computer Science and Engineering, Eindhoven University of Technology",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2009",
+    "end": "2009",
+    "color": colorSet.getIndex(1),
+    "text": "M.S., Computer Science and Engineering, Eindhoven University of Technology",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2010",
+    "end": "2010",
+    "color": colorSet.getIndex(2),
+    "text": "M.S., Bioinformatics, VU University Amsterdam",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2015",
+    "end": "2015",
+    "color": colorSet.getIndex(3),
+    "text": "Ph.D., Computer Science, VU University Amsterdam and Centrum Wiskunde & Informatica (CWI)",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2015",
+    "end": "2015",
+    "color": colorSet.getIndex(4),
+    "text": "Young Investigator Award by Netherlands Bioinformatics and Systems Biology research school",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2019",
+    "end": "2019",
+    "color": colorSet.getIndex(5),
+    "text": "National Science Foundation’s CRII Award",
+    "icon": "/static/winner-with-trophy.svg"
+}]
+
+Wade A Fagen-Ulmschneider
+
+[{
+    "category": "",
+    "start": "2016",
+    "end": "2016",
+    "color": colorSet.getIndex(0),
+    "text": "National Academy of Engineering's Frontiers of Engineering Education scholars",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2017",
+    "end": "2017",
+    "color": colorSet.getIndex(1),
+    "text": "Collins Award for Innovative Teaching",
+    "icon": "/static/winner-with-trophy.svg"
+}]
+
+Paul Fischer nothing found
+
+Margaret Fleck nothing found
+
+Christopher Fletcher nothing found
+
+Philip Godfrey
+
+[{
+    "category": "",
+    "start": "2002",
+    "end": "2002",
+    "color": colorSet.getIndex(0),
+    "text": " B.S. at Carnegie Mellon University",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2009",
+    "end": "2009",
+    "color": colorSet.getIndex(1),
+    "text": "Ph.D. at UC Berkeley",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2014",
+    "end": "2014",
+    "color": colorSet.getIndex(2),
+    "text": "program committee co-chair of ACM HotNets",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2015",
+    "end": "2015",
+    "color": colorSet.getIndex(3),
+    "text": "Beckman Fellow at the UIUC Center for Advanced Study",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2016",
+    "end": "2016",
+    "color": colorSet.getIndex(4),
+    "text": "Symposium on SDN Research",
+    "icon": "/static/winner-with-trophy.svg"
+}]
