@@ -1,0 +1,52 @@
+{
+    "name": "Mohammed El-Kebir",
+    "timeline":
+    [{
+        "category": "",
+        "start": "2006",
+        "end": "2006",
+        
+        "text": "B.S., Computer Science and Engineering, Eindhoven University of Technology",
+        "icon": "/static/graduation-hat-and-diploma.svg"
+    },
+    {
+        "category": "",
+        "start": "2009",
+        "end": "2009",
+        
+        "text": "M.S., Computer Science and Engineering, Eindhoven University of Technology",
+        "icon": "/static/graduation-hat-and-diploma.svg"
+    },
+    {
+        "category": "",
+        "start": "2010",
+        "end": "2010",
+        
+        "text": "M.S., Bioinformatics, VU University Amsterdam",
+        "icon": "/static/graduation-hat-and-diploma.svg"
+    },
+    {
+        "category": "",
+        "start": "2015",
+        "end": "2015",
+        
+        "text": "Ph.D., Computer Science, VU University Amsterdam and Centrum Wiskunde & Informatica (CWI)",
+        "icon": "/static/graduation-hat-and-diploma.svg"
+    },
+    {
+        "category": "",
+        "start": "2015",
+        "end": "2015",
+        
+        "text": "Young Investigator Award by Netherlands Bioinformatics and Systems Biology research school",
+        "icon": "/static/winner-with-trophy.svg"
+    },
+    {
+        "category": "",
+        "start": "2019",
+        "end": "2019",
+        
+        "text": "National Science Foundation’s CRII Award",
+        "icon": "/static/winner-with-trophy.svg"
+    }]
+}

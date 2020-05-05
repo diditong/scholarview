@@ -810,7 +810,7 @@
         document.getElementById("tj").innerHTML=scholarName + "'s favorite publishers:";
         document.getElementById("ts").innerHTML="Scholars who have published with " + scholarName + ":";
         document.getElementById("cj").innerHTML="Citation percentage of " + scholarName + "'s top journals:";
-        document.getElementById("ra").innerHTML="# papers of " + scholarName + " by # of authors";
+        document.getElementById("ra").innerHTML="# papers of " + scholarName + " by # authors";
         document.getElementById("dt").innerHTML="# papers of " + scholarName + " by yearly citations";
       </script>
 
@@ -818,7 +818,7 @@
 
 
   <div hidden id='eval-form'>
-    <form  action='/search' method='post'>
+    <form  action='/submit' method='post'>
       <div class='container'>
         <div class='row align-items-center'>
           <div class='col'>
@@ -986,7 +986,7 @@
         </div>
       </div>
       <br />
-      <button class="btn btn-primary" type='submit' value='submit_votes' name='btn'> submit </button>
+      <button id="eval-submit-btn" class="btn btn-primary" type='submit' value='submit_votes' name='btn' onclick="thankYou()"> submit </button>
     </form>
   </div>
 
@@ -1037,42 +1037,41 @@
     </div>
   </div>
 
-  <h6 id="message"> </h6>
-
+  <h6 id="no-user-message"></h6>
 
   <script>
-    var user = '{{user}}';
+    var user = JSON.parse('{{user | tojson}}');
     var scholarName = '{{scholar_name}}';
     var rated = '{{rated}}';
 
-
-    if (user != null && rated == 'True') { // User has logged in and submitted a ratings form
-      document.getElementById('message').innerHTML=
-      "Your feedback for this instructor has been received. Thank you very much for participating!";
+    if (user == null) { // User has not yet logged in
+      document.getElementById('no-user-message').innerHTML="Please log in to evaluate the instructor.";
     }
-    else if (user != null && rated == 'False') { // User has logged in but has not submitted a ratings form
+    else { // User has logged in
       var course1 = basic_info["teaching1"];
       var course2 = basic_info["teaching2"];
       var course3 = basic_info["teaching3"];
       var courses = [course1, course2, course3];
-      if (courses[0] == null) {
-      }
-      else {
-        console.log("Reached here!");
-        for (i=0; i<courses.length; i++){
-          if (courses[i] != null){
-            document.getElementById('title'+(i+1)).innerHTML = courses[i];
-            document.getElementById('form'+(i+1)).innerHTML = document.getElementById('eval-form').innerHTML;
-          }
-          else {
-            document.getElementById('card'+(i+1)).remove();
-          }
+      document.getElementById("eval-section").removeAttribute("hidden");
+      for (i=0; i<courses.length; i++){
+        if (courses[i] != null && rated[i] == '0'){
+          document.getElementById('title'+(i+1)).innerHTML = courses[i];
+          document.getElementById('eval-submit-btn').value = scholarName+"|"+i+"|"+rated;
+          document.getElementById('form'+(i+1)).innerHTML = document.getElementById('eval-form').innerHTML;
         }
-        document.getElementById("eval-section").removeAttribute("hidden");
+        else if (courses[i] != null && rated[i] == '1'){
+          document.getElementById('title'+(i+1)).innerHTML = courses[i];
+          document.getElementById('form'+(i+1)).innerHTML=
+          "Your feedback for this course has been received. Thank you very much for participating!";
+        }
+        else if (courses[i] == null){
+          document.getElementById('card'+(i+1)).remove();
+        }
       }
     }
-    else { // User has not logged in
-      document.getElementById('message').innerHTML="Please log in to evaluate the instructor.";
+
+    function thankYou() {
+      alert("Thank you very much for participating!");
     }
   </script>
 

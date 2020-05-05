@@ -21,8 +21,8 @@ print("Connected to MySQL successfully!")
 Connect to MongoDB Database
 '''
 client = MongoClient('mongodb://localhost:27017/')
-db = client['admin']
-collection = db['timeline-data']
+db = client['uiuc_scholars']
+collection = db['timeline']
 
 
 # Set the secret key to some random bytes. Keep this really secret!
@@ -39,6 +39,7 @@ def login():
       cursor.callproc('checkinUser', [usrname, psw])
       for response in cursor.stored_results():
         response = response.fetchall()[0][0]
+        print("response is: ", response)
       if response == 0:
         return redirect(url_for("home", login_status="wrong_pass"))
       elif response == 1:
@@ -77,18 +78,20 @@ Home Page of Google Scholar Visulization
 @app.route("/home", methods = ["GET", "POST"])
 def home():
   if 'username' in session: # The user has alredy signed in
+    print("I reached here")
     return render_template("home.html", login_status="successful", signup_status="idle", user=session['username'])
   else: # The user is not signed in
     login_status = request.args.get('login_status')
     signup_status = request.args.get('signup_status')
     user = request.args.get('user')
-    if (login_status != None): # The user is logging in
+    if (login_status == "successful"): # Add user to session for a successful login
       session["username"] = user
+    if (login_status != None): # The user is logging in
       return render_template("home.html", login_status=login_status, signup_status=signup_status, user=user)
     elif (signup_status != None): # The user is signing up
       return render_template("home.html", login_status=login_status, signup_status=signup_status, user=user)
     else: # The user is simply visiting the homepage
-      return render_template("home.html", login_status="idle", signup_status="idle")
+      return render_template("home.html")
 
 '''
 Scholar's Individual Page
@@ -101,12 +104,13 @@ def search():
       if "username" in session:
         cursor = connection.cursor()
         cursor.callproc('searchRating', [session["username"], sname])
+        rated = ['0','0','0']
         for response in cursor.stored_results():
-          response = response.fetchall()[0][0]
-          if response == 0:
-            rated = False
-          elif response == 1:
-            rated = True
+          response = response.fetchall()
+          for rating in response:
+            idx = rating[0]-1
+            rated[idx] = '1'
+        rated = ''.join(rated)
         return redirect(url_for("scholar", scholar_name=sname, rated=rated))
       else:
           return redirect(url_for("scholar", scholar_name=sname))
@@ -114,19 +118,33 @@ def search():
 
 @app.route("/submit", methods=["GET", "POST"])
 def submit():
+  print("reach submit")
   if request.method == "POST":
-    if request.form['btn'] == 'submit_ratings':
-      eval1 = request.form['stars1']
-      eval2 = request.form['stars2']
-      eval3 = request.form['stars3']
-      eval4 = request.form['stars4']
-      eval5 = request.form['stars5']
-      print("LOOK AT HERE!!!!!!!!!!!!!!!!!!!!!!", eval1, eval2, eval3, eval4, eval5)
-      return redirect(url_for("scholar", scholar_name=sname))
+    
+    sname, course_idx, rated = request.form['btn'].split("|")
+    course_idx = int(course_idx)
+    rated = [char for char in rated]
+    rating = []
+    for i in range(1,6):
+      if "stars"+str(i) in request.form:
+        rating.append(request.form["stars"+str(i)])
+      else: 
+        rating.append('0')
+    rating = ''.join(rating)
+
+    cursor = connection.cursor()
+    tuple = (session["username"],sname,course_idx+1,rating)
+    insert_query = "INSERT INTO ratings(usrname, scName, courseIdx, rating) VALUES" + str(tuple)
+    cursor.execute(insert_query)
+    connection.commit()
+
+    rated[course_idx] = '1'
+    rated = ''.join(rated)
+    
+    return redirect(url_for("scholar", scholar_name=sname, rated = rated))
 
 @app.route("/<scholar_name>")
 def scholar(scholar_name):
-
   scholar_name = str(scholar_name)
   rated = request.args.get('rated')
   if "username" in session:
@@ -136,14 +154,10 @@ def scholar(scholar_name):
 
   ### Find timeline of a scholar from MongoDB
   pipeline = {"name":  scholar_name}
-  timeline = db["timeline-data"].find(pipeline)[0]["timeline"]
+  timeline = db["timeline"].find(pipeline)[0]["timeline"]
 
   ### Create data pipelines (SQL queries)
   # Create data pipeline to collect key words
-  if request.method == "POST":
-    if request.form['btn'] == 'submit_form':
-      print(request.form['stars1'])
-
   cursor = connection.cursor()
   describe = "DESCRIBE scholars;"
   cursor.execute(describe)
@@ -353,14 +367,10 @@ def scholar(scholar_name):
   for i in range(len(numList)):
     distList.append({"category":str(i+1), "value":str(numList[i])})
 
-  print(distList)
-
   return render_template('demo.html', user = user, scholar_name = scholar_name, rated = rated,\
                                       info=basicInfoPacket, timeline=timeline,\
                                       data1=keywordsPacket, data2=journalPacket, data3=authorPacket,\
                                       data4=numCitesPacket, data5=numAuthorsPacket, data6=distList)
-  
-
 
 if __name__ == '__main__':
   app.run(debug=True)

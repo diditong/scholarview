@@ -1,0 +1,37 @@
+{
+    "name": "Paul Fischer",
+    "timeline":
+    
+[{
+    "category": "",
+    "start": "1981",
+    "end": "1981",
+    
+    "text": "Mechanical Engineering, Cornell",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "1982",
+    "end": "1982",
+    
+    "text": "Mechanical Engineering, Stanford",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "1989",
+    "end": "1989",
+    
+    "text": "PhD (1989), Mechanical Engineering, M.I.T.",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "1991",
+    "end": "1991",
+    
+    "text": "Post-Doc ('90-'91), Applied Mathematics, Caltech",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+}]
+}

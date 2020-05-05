@@ -1,0 +1,29 @@
+{
+    "name": "William Gropp",
+    "timeline":
+    
+[{
+    "category": "",
+    "start": "1977",
+    "end": "1977",
+    
+    "text": "B.Sc., Computer Science, Case Western Reserve University",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "1978",
+    "end": "1978",
+    
+    "text": "M.Sc, Computer Science, Stanford University",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "1982",
+    "end": "1982",
+    
+    "text": "Ph.D., Computer Science, University of Florida",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+}]
+}
