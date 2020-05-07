@@ -1,0 +1,20 @@
+{
+    "name": "Wade A Fagen-Ulmschneider",
+    "timeline":
+    [{
+        "category": "",
+        "start": "2016",
+        "end": "2016",
+        
+        "text": "National Academy of Engineering's Frontiers of Engineering Education scholars",
+        "icon": "/static/winner-with-trophy.svg"
+    },
+    {
+        "category": "",
+        "start": "2017",
+        "end": "2017",
+        
+        "text": "Collins Award for Innovative Teaching",
+        "icon": "/static/winner-with-trophy.svg"
+    }]
+}

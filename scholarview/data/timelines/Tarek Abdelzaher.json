@@ -1,0 +1,29 @@
+{
+    "name": "Tarek Abdelzaher",
+    "timeline":
+    [{
+    "category": "",
+    "start": "1999",
+    "end": "1999",
+    
+    "text": "Ph.D. in Computer Science from the University of Michigan",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2011",
+    "end": "2011",
+    
+    "text": "the Xerox Award for Faculty Research",
+    "icon": "/static/winner-with-trophy.svg"
+},
+{
+    "category": "",
+    "start": "2012",
+    "end": "2012",
+    
+    "text": "recipient of the IEEE Outstanding Technical Achievement and Leadership Award in Real-time Systems",
+    "icon": "/static/winner-with-trophy.svg"
+}]
+
+}

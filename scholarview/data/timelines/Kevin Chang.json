@@ -1,0 +1,61 @@
+{
+    "name": "Kevin Chang",
+    "timeline":
+    [{
+        "category": "",
+        "start": "2000",
+        "end": "2000",
+        
+        "text": "Best Paper Selections in VLDB",
+        "icon": "/static/winner-with-trophy.svg"
+    },
+    {
+        "category": "",
+        "start": "2002",
+        "end": "2002",
+        
+        "text": "NSF CAREER Award",
+        "icon": "/static/winner-with-trophy.svg"
+    },
+    {
+        "category": "",
+        "start": "2003",
+        "end": "2003",
+        
+        "text": "NCSA Faculty Fellow Award",
+        "icon": "/static/winner-with-trophy.svg"
+    },
+    {
+        "category": "",
+        "start": "2004",
+        "end": "2004",
+        
+        "text": "IBM Faculty Awards",
+        "icon": "/static/winner-with-trophy.svg"
+    },
+    {
+        "category": "",
+        "start": "2005",
+        "end": "2005",
+        
+        "text": "IBM Faculty Awards",
+        "icon": "/static/winner-with-trophy.svg"
+    },
+    {
+        "category": "",
+        "start": "2008",
+        "end": "2008",
+        
+        "text": "Academy for Entrepreneurial Leadership Faculty Fellow Award",
+        "icon": "/static/winner-with-trophy.svg"
+    },
+    {
+        "category": "",
+        "start": "2013",
+        "end": "2013",
+        
+        "text": "Best Paper Selections in VLDB",
+        "icon": "/static/winner-with-trophy.svg"
+    }]
+    
+}

@@ -1,0 +1,36 @@
+{
+    "name": "Mattox Alan Beckman",
+    "timeline":
+    [{
+        "category": "",
+        "start": "1993",
+        "end": "1993",
+        
+        "text": "BS in Math and Computer Science / University of Illinois at Urbana",
+        "icon": "/static/graduation-hat-and-diploma.svg"
+    },
+    {
+        "category": "",
+        "start": "2003",
+        "end": "2003",
+        
+        "text": "PhD in Computer Science / University of Illinois at Urbana",
+        "icon": "/static/graduation-hat-and-diploma.svg"
+    },
+    {
+        "category": "",
+        "start": "2006",
+        "end": "2006",
+        
+        "text": "Teacher of the Year / Illinois Institute of Technology",
+        "icon": "/static/winner-with-trophy.svg"
+    },
+    {
+        "category": "",
+        "start": "2015",
+        "end": "2015",
+        
+        "text": "Teaching Fellow / Illinois Institute of Technology",
+        "icon": "/static/winner-with-trophy.svg"
+    }]
+}

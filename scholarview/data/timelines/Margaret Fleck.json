@@ -1,0 +1,29 @@
+{
+    "name": "Margaret Fleck",
+    "timeline":
+    
+[{
+    "category": "",
+    "start": "2012",
+    "end": "2012",
+    
+    "text": "Coordinator of CS proficiency exams",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2017",
+    "end": "2017",
+    
+    "text": "Student awards committee",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2018",
+    "end": "2018",
+    
+    "text": "Academic Appeals Committee",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+}]
+}

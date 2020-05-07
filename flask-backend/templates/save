@@ -1,4 +1,0 @@
-CREATE PROCEDURE searchRating(unameInput VARCHAR(255), snameInput VARCHAR(255))                  
-  BEGIN                                                                                          
-    SELECT courseIdx, rating FROM ratings WHERE usrname=unameInput AND scName=snameInput; 
-  END //    

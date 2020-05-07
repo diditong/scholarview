@@ -1,0 +1,29 @@
+{
+    "name": "Christopher Fletcher",
+    "timeline":
+    
+[{
+    "category": "",
+    "start": "2006",
+    "end": "2006",
+    
+    "text": "Bachelor's of Science in Electrical Engineering and Computer Science, Berkeley",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2016",
+    "end": "2016",
+    
+    "text": "Ph.D. (also in EECS) at MIT",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2018",
+    "end": "2018",
+    
+    "text": "Research Post-doc at Nvidia",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+}]
+}

@@ -1,0 +1,37 @@
+{
+    "name": "Adam Bates",
+    "timeline":
+    
+[{
+    "category": "",
+    "start": "2006",
+    "end": "2006",
+    
+    "text": "B.Sc., Computer Science, University of Maryland",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2012",
+    "end": "2012",
+    
+    "text": "M.Sc, Computer Science, University of Oregon",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2016",
+    "end": "2016",
+    
+    "text": "Ph.D., Computer Science, University of Florida",
+    "icon": "/static/graduation-hat-and-diploma.svg"
+},
+{
+    "category": "",
+    "start": "2017",
+    "end": "2017",
+    
+    "text": "ACM SIGSAC Doctoral Dissertation Award Runner-Up",
+    "icon": "/static/winner-with-trophy.svg"
+}]
+}
