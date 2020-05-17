@@ -1,3 +1,3 @@
 Scholarview is the first full stack project I have completed. It is a data visualization platform that features information about CS professors at UIUC, including short biography, education, interests, classes taught, and a brief timeline, along with information pertaining to their publishings on Google Scholar, such as most commonly used words, the scholar’s top publishers, who they collaborated with ,etc. Upon landing on the home page, users can sign in or sign up, or just go ahead and search up scholars without signing in. Users can also rate a scholar’s courses on several metrics such as quality of lectures, difficulty of exams, etc.
 
-https://github.com/diditong/scholarview/issues/1#issue-619814600
+https://user-images.githubusercontent.com/43663301/82161964-9c9f6780-9866-11ea-9a15-2a930ebd7d93.png
