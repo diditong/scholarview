@@ -19,17 +19,18 @@ III. Database and Backend
 Scholarview uses MySQL and MongoDB as the database providers. For MySQL, five tables (i.e., “Articles”, “Scholars”, “Writes”, “Users”, and “Rates”) are created in the database. The relationship between the five tables are demonstrated by Figure 1. “Articles” contain the publication information (e.g. year of publication, number of citations) of a scholar; the data is scraped using the “Publish or Perish” software at https://harzing.com/resources/publish-or-perish. A Scrapy web-crawler is developed to verify the correctness of the output of the software.  “Scholars” contain the basic information of scholars (e.g. short biography,research interest, teachings, etc.) are manually collected from either a scholar’s homepage or the website hosted by the scholar’s home department. “Writes”, which has two columns columns scId (Scholar ID) and aId (article ID), describes the many-to-many relationship between “Scholars” and “Articles”. For example, if a scholar with scId “10” writes an article with aId “217”, it will appear in “Writes” as a record “(10, 217)”. “Users” holds the account information, namely username and password, of Scholarview users. Once a person registers for an account at Scholarview, the entered username and password will be saved in the table for future login verifications. “Rates” is another many-to-many relation table which contains users’ ratings for the courses of scholars. If a user submits an evaluation form, his ratings will be saved in the “Rates” table. Please refer to Table 1, Table 2, Table 3, Table 4, and Table 5 in APPENDIX for the schema (attribute names and data types) and detailed attribute description of “Articles”, “Scholars”, “Writes”, “Users” and “Rates”, respectively.
 
 ![ER Design](https://user-images.githubusercontent.com/43663301/82161964-9c9f6780-9866-11ea-9a15-2a930ebd7d93.png)
-Figure 1. ER Design of the database
+<p style="text-align: center;">Figure 1. ER Design of the database</p>
 
 2. MongoDB
 The data from the timeline section for Scholarview is maintained in MongoDB, which is a document-based NoSQL database. A timeline is a sequence of major events in a scholar’s academic career. (An example of a timeline stored in MongoDB is illustrated by Figure 2.) Notice the fact that the number of major events varies from scholar to scholar. For example, a scholar who just became an assistant professor might only have graduations and earning awards during the Ph.D. period as his major events, while a distinguished tenured professor can have tens of honorable awards, fellowships, and research grants. Such variance of the timeline data disqualifies MySQL as a database solution. First, the use of MySQL database requires the maintenance of an extra Event ID column, which increases the difficulty of web development. However, MongoDB stores each scholar’s timeline in an individual document which automatically generates and removes Event ID upon insertion and deletion of a record. Second, the selected data from MySQL cannot be directly sent to the frontend for displaying purposes. It usually needs to be converted to JSON to feed most chart APIs (e.g. amCharts, Chart.js, etc.) In contrast, querying MongoDB directly yields results in the JSON format, thus eliminating the post-processing process. 
 
 ![TimeLine](https://user-images.githubusercontent.com/43663301/82162117-ac6b7b80-9867-11ea-8797-94f349276f31.PNG)
-Figure 2. A Timeline of Prof. Abdussalam Alawini in MongoDB
+<p style="text-align: center;">Figure 2. A Timeline of Prof. Abdussalam Alawini in MongoDB</p>
 
 3. Flask
 The backend of Scholarview is implemented with Flask, a micro web framework written in Python. The “flask”, “mysql” and “pymongo” libraries are imported for backend development. The specific functions and the purposes for using them are summarized in Table 6. 
-Table 6. Summary of Library Functions Used for Scholarview
+
+<p style="text-align: center;">Table 6. Summary of Library Functions Used for Scholarview</p>
 ![Table6](https://user-images.githubusercontent.com/43663301/82162189-33b8ef00-9868-11ea-89d8-eb8f57fe837d.PNG)
 Five routes are defined, “/login”, “/logout”, “/signup”, “/home”, “/search”, “/process”, and “/submit”. A function with the same name is developed for each route. An example of a route and function (/login and login()) is shown in the following interactive window of Visual Studio Code. 
 
@@ -75,7 +76,7 @@ iii.	Alerting upon submission of a evaluation form
 
 2. Basic Functions
 The basic functions of Scholarview are insert, delete, update and search which are implemented throughout the user account system and the visualization system. When a user registers for an account at Scholarview, the request will be sent to the backend, and a stored procedure “createUser”, as illustrated by Figure 3,  will be called. The procedure first checks if the username that the user has entered is already in the database. It will either return 0 if username already exists or return 1 after inserting the user account record into “Users” table if username does not exist.
-
+<p style="text-align: center;">Table 6. Summary of Library Functions Used for Scholarview</p>
 
 3. Advanced Function
 The advanced function of Scholarview is demonstrated by the rating system and the user account system. They together allow a user to rate a scholar’s courses. The challenge of implementing a rating system comes from the complicated software logics and information flow, as illustrated by Figure 4. In this figure, the disks represent the databases; the rectangles represent the route and functions in the backend; the ellipses represent the HTML templates; blue lines describe information flows through HTTP requests, while black lines describe information flow between backend functions and databases.
@@ -88,17 +89,17 @@ While complicated software logic accounts for a challenge, the team struggled wi
 
 APPENDIX
 
-Table 1: Schema and Description for the “Articles” MySQL Table
+<p style="text-align: center;">Table 1: Schema and Description for the “Articles” MySQL Table</p>
 ![Table1](https://user-images.githubusercontent.com/43663301/82162581-3ff27b80-986b-11ea-8ed6-83c2ec744be6.PNG)
 
-Table 2: Schema and Description for the “Scholars” MySQL Table
+<p style="text-align: center;">Table 2: Schema and Description for the “Scholars” MySQL Table</p>
 ![Table2](https://user-images.githubusercontent.com/43663301/82162587-43860280-986b-11ea-8a36-e661ae16686a.PNG)
 
-Table 3: Schema and Description for the “Writes” MySQL Table
+<p style="text-align: center;">Table 3: Schema and Description for the “Writes” MySQL Table</p>
 ![Table3](https://user-images.githubusercontent.com/43663301/82162588-45e85c80-986b-11ea-89db-551d1a32952b.PNG)
 
-Table 4: Schema and Description for the “Users” MySQL Table
+<p style="text-align: center;">Table 4: Schema and Description for the “Users” MySQL Table</p>
 ![Table4](https://user-images.githubusercontent.com/43663301/82162590-4aad1080-986b-11ea-8abd-61b37e6285ce.PNG)
 
-Table 5: Schema and Description for the “Rates” MySQL Table
+<p style="text-align: center;">Table 5: Schema and Description for the “Rates” MySQL Table</p>
 ![Table5](https://user-images.githubusercontent.com/43663301/82162591-4c76d400-986b-11ea-873f-a253df12812f.PNG)
