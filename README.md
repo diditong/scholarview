@@ -31,7 +31,8 @@ The data from the timeline section for Scholarview is maintained in MongoDB, whi
 The backend of Scholarview is implemented with Flask, a micro web framework written in Python. The “flask”, “mysql” and “pymongo” libraries are imported for backend development. The specific functions and the purposes for using them are summarized in Table 6. 
 
 <p align="center">Table 6. Summary of Library Functions Used for Scholarview</p>
-![Table6](https://user-images.githubusercontent.com/43663301/82162189-33b8ef00-9868-11ea-89d8-eb8f57fe837d.PNG)
+![Table6](https://user-images.githubusercontent.com/43663301/82163652-2274e000-9872-11ea-9ece-01a30fb80cb9.PNG)
+
 Five routes are defined, “/login”, “/logout”, “/signup”, “/home”, “/search”, “/process”, and “/submit”. A function with the same name is developed for each route. An example of a route and function (/login and login()) is shown in the following interactive window of Visual Studio Code. 
 
 Five routes are defined, “/login”, “/logout”, “/signup”, “/home”, “/search”, “/process”, and “/submit”. A function with the same name is developed for each route. An example of a route and function (/login and login()) is shown in the following interactive window of Visual Studio Code.
@@ -76,18 +77,25 @@ iii.	Alerting upon submission of a evaluation form
 
 2. Basic Functions
 The basic functions of Scholarview are insert, delete, update and search which are implemented throughout the user account system and the visualization system. When a user registers for an account at Scholarview, the request will be sent to the backend, and a stored procedure “createUser”, as illustrated by Figure 3,  will be called. The procedure first checks if the username that the user has entered is already in the database. It will either return 0 if username already exists or return 1 after inserting the user account record into “Users” table if username does not exist.
+
+![createUser](https://user-images.githubusercontent.com/43663301/82163658-3882a080-9872-11ea-8b7e-1274369b2fa5.PNG)
 <p align="center">Figure 3. Stored Procedure “createUser” with INSERT function</p>
 
 Upon user login, Scholarview will call the “checkinUser” procedure, as illustrated by Figure 4. The procedure first checks if the user exists in the “Users” table or not. If not, the procedure returns 2, which represents “user does not exist status”. If the user does exist, the procedure will further check whether the password entered by the user is the same as the password stored in the “Users” table. If they are the same, the procedure returns 1; otherwise, the procedure returns 0. A single SELECT command is used to realize this functionality.
+
+![checkinUser](https://user-images.githubusercontent.com/43663301/82163666-433d3580-9872-11ea-8c0f-32c0ffeb2793.PNG)
 <p align="center">Figure 4. Stored Procedure “checkinUser”</p>
 
 We have multiple search functions in the visualization part, which includes 6 charts empowered by amCharts. A summary of the name (purpose) of a chart, the SQL query used to retrieve raw data, and the post-processing process is given by Table 2.
+
+![Table7](https://user-images.githubusercontent.com/43663301/82163672-4d5f3400-9872-11ea-809d-158dc53349cd.PNG)
 <p align="center">Table 7. A summary of the visualization charts</p>
 
 
 3. Advanced Function
 The advanced function of Scholarview is demonstrated by the rating system and the user account system. They together allow a user to rate a scholar’s courses. The challenge of implementing a rating system comes from the complicated software logics and information flow, as illustrated by Figure 4. In this figure, the disks represent the databases; the rectangles represent the route and functions in the backend; the ellipses represent the HTML templates; blue lines describe information flows through HTTP requests, while black lines describe information flow between backend functions and databases.
-![InfoFlow](https://user-images.githubusercontent.com/43663301/82162423-e63d8180-9869-11ea-9861-344728a9eaab.png)
+
+![InfoFlow](https://user-images.githubusercontent.com/43663301/82163689-61a33100-9872-11ea-866f-1ab9083be3ca.png)
 <p align="center">Figure 5. Information Flow in the System</p>
 
 As an example, once a user enters the website, the home function will be activated so the user is directed to the home.html page, where he can logout, login, signup, or search by submitting forms. If he logs in or signs up, the corresponding functions will be called; the functions will communicate with the “Users” database, retrieve some information, process it, and rerender home.html with certain parameters. If the user searches for a scholar, the search function will first ask “Ratings” if the user has rated any of the scholar’s courses, the answer from ratings “rated” will be sent back to search(). Then, search() will call process(), passing the scholar’s name and “rated” parameters to it. Next, process() will communicate with MySQL and NoSQL databases to obtain the proper data. Finally, process() will send the processed data and “rated” to scholar.html for rendering. Depending on the value of “rated”, scholar.html will either show or hide an evaluation form. For example, if “rated” tells scholar.html that the user has already rated for the scholar on the course, the evaluation form for the course will be hidden and a thank-you message will be displayed.
