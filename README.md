@@ -105,18 +105,20 @@ While complicated software logic accounts for a challenge, the team struggled wi
 APPENDIX
 
 <p align="center">Table 1: Schema and Description for the “Articles” MySQL Table</p>
-![Table1](https://user-images.githubusercontent.com/43663301/82162581-3ff27b80-986b-11ea-8ed6-83c2ec744be6.PNG)
-
 <p align="center">Table 2: Schema and Description for the “Scholars” MySQL Table</p>
-![Table2](https://user-images.githubusercontent.com/43663301/82162587-43860280-986b-11ea-8a36-e661ae16686a.PNG)
-
 <p align="center">Table 3: Schema and Description for the “Writes” MySQL Table</p>
-![Table3](https://user-images.githubusercontent.com/43663301/82162588-45e85c80-986b-11ea-89db-551d1a32952b.PNG)
-
 <p align="center">Table 4: Schema and Description for the “Users” MySQL Table</p>
-![Table4](https://user-images.githubusercontent.com/43663301/82162590-4aad1080-986b-11ea-8abd-61b37e6285ce.PNG)
-
 <p align="center">Table 5: Schema and Description for the “Rates” MySQL Table</p>
-![Table5](https://user-images.githubusercontent.com/43663301/82162591-4c76d400-986b-11ea-873f-a253df12812f.PNG)
 
+
+
+![Table1](https://user-images.githubusercontent.com/43663301/82163849-20f7e780-9873-11ea-9ad8-bdcf4775cab5.PNG)
+
+![Table2](https://user-images.githubusercontent.com/43663301/82163851-235a4180-9873-11ea-8b7a-b07696b95893.PNG)
+
+![Table3](https://user-images.githubusercontent.com/43663301/82163855-26553200-9873-11ea-8094-de9f10e3ecf0.PNG)
+
+![Table4](https://user-images.githubusercontent.com/43663301/82163857-2b19e600-9873-11ea-9fc8-74d310e39965.PNG)
+
+![Table5](https://user-images.githubusercontent.com/43663301/82163859-2ead6d00-9873-11ea-8074-e309bf4906c0.PNG)
 
