@@ -31,7 +31,7 @@ The data from the timeline section for Scholarview is maintained in MongoDB, whi
 The backend of Scholarview is implemented with Flask, a micro web framework written in Python. The “flask”, “mysql” and “pymongo” libraries are imported for backend development. The specific functions and the purposes for using them are summarized in Table 6. 
 
 <p align="center">Table 6. Summary of Library Functions Used for Scholarview</p>
-![Table6](https://user-images.githubusercontent.com/43663301/82163652-2274e000-9872-11ea-9ece-01a30fb80cb9.PNG)
+![Table6](https://user-images.githubusercontent.com/43663301/82163787-d1192080-9872-11ea-8e37-7e63821b4100.PNG)
 
 Five routes are defined, “/login”, “/logout”, “/signup”, “/home”, “/search”, “/process”, and “/submit”. A function with the same name is developed for each route. An example of a route and function (/login and login()) is shown in the following interactive window of Visual Studio Code. 
 
