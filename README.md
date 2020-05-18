@@ -1,3 +1,8 @@
+Scholarview
+Author: Jiashuo Tong, Akhil Bhamidipati, Longji Li, Ilie Vartic
+Video Demo: https://www.youtube.com/watch?v=ButSUfZvg6c
+Description: Scholarview is my first full stack project. It visualizes data about Computer Science professors at UIUC to better understand their academic networks, contributions, and history.
+
 I. Overview
 1. Project Title
 Google Scholar Data Visualization System (Scholarview)
