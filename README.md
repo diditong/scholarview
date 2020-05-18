@@ -10,7 +10,7 @@ Google Scholar Data Visualization System (Scholarview)
 <h6>2. Project Summary</h6>
 Our project is a data visualization platform that features information about CS professors at UIUC, including short biography, education, interests, classes taught, and a brief timeline, along with information pertaining to their publishings on Google Scholar, such as most commonly used words, the scholar’s top publishers, who they collaborated with ,etc. Upon landing on the home page, users can sign in or sign up, or just go ahead and search up scholars without signing in. Users can also rate a scholar’s courses on several metrics such as quality of lectures, difficulty of exams, etc. The user interfaces demonstrated by Figure 5, Figure 6, Figure 7, and Figure 8 in APPENDIX.
 
-<h6>II. Frontend</h6>
+<h4>II. Frontend</h4>
 Half of the styles and features (e.g. navigation bar, containers, cards, etc.) of our webpages are imported from Bootstrap, while the other half is Cascading Style Sheets (CSS). We use CSS as a complement to Bootstrap when Bootstrap does provide a needed feature (e.g. the 5-star rating feature), or when we want to adjust Bootstrap styles according to our preferences (e.g. Illini color theme). Besides, we use javascript to modify HTML content according to users’ actions. Looking into Scholar, it has two HTML templates, home.html and scholar.html. 
 
 1. Home.html
