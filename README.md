@@ -18,13 +18,13 @@ III. Database and Backend
 1. MySQL
 Scholarview uses MySQL and MongoDB as the database providers. For MySQL, five tables (i.e., “Articles”, “Scholars”, “Writes”, “Users”, and “Rates”) are created in the database. The relationship between the five tables are demonstrated by Figure 1. “Articles” contain the publication information (e.g. year of publication, number of citations) of a scholar; the data is scraped using the “Publish or Perish” software at https://harzing.com/resources/publish-or-perish. A Scrapy web-crawler is developed to verify the correctness of the output of the software.  “Scholars” contain the basic information of scholars (e.g. short biography,research interest, teachings, etc.) are manually collected from either a scholar’s homepage or the website hosted by the scholar’s home department. “Writes”, which has two columns columns scId (Scholar ID) and aId (article ID), describes the many-to-many relationship between “Scholars” and “Articles”. For example, if a scholar with scId “10” writes an article with aId “217”, it will appear in “Writes” as a record “(10, 217)”. “Users” holds the account information, namely username and password, of Scholarview users. Once a person registers for an account at Scholarview, the entered username and password will be saved in the table for future login verifications. “Rates” is another many-to-many relation table which contains users’ ratings for the courses of scholars. If a user submits an evaluation form, his ratings will be saved in the “Rates” table. Please refer to Table 1, Table 2, Table 3, Table 4, and Table 5 in APPENDIX for the schema (attribute names and data types) and detailed attribute description of “Articles”, “Scholars”, “Writes”, “Users” and “Rates”, respectively.
 
-![ER Design](https://user-images.githubusercontent.com/43663301/82161964-9c9f6780-9866-11ea-9a15-2a930ebd7d93.png)
+<p align="center">![ER Design](https://user-images.githubusercontent.com/43663301/82161964-9c9f6780-9866-11ea-9a15-2a930ebd7d93.png)</p>
 <p align="center">Figure 1. ER Design of the database</p>
 
 2. MongoDB
 The data from the timeline section for Scholarview is maintained in MongoDB, which is a document-based NoSQL database. A timeline is a sequence of major events in a scholar’s academic career. (An example of a timeline stored in MongoDB is illustrated by Figure 2.) Notice the fact that the number of major events varies from scholar to scholar. For example, a scholar who just became an assistant professor might only have graduations and earning awards during the Ph.D. period as his major events, while a distinguished tenured professor can have tens of honorable awards, fellowships, and research grants. Such variance of the timeline data disqualifies MySQL as a database solution. First, the use of MySQL database requires the maintenance of an extra Event ID column, which increases the difficulty of web development. However, MongoDB stores each scholar’s timeline in an individual document which automatically generates and removes Event ID upon insertion and deletion of a record. Second, the selected data from MySQL cannot be directly sent to the frontend for displaying purposes. It usually needs to be converted to JSON to feed most chart APIs (e.g. amCharts, Chart.js, etc.) In contrast, querying MongoDB directly yields results in the JSON format, thus eliminating the post-processing process. 
 
-![TimeLine](https://user-images.githubusercontent.com/43663301/82162117-ac6b7b80-9867-11ea-8797-94f349276f31.PNG)
+<p align="center">![TimeLine](https://user-images.githubusercontent.com/43663301/82162117-ac6b7b80-9867-11ea-8797-94f349276f31.PNG)</p>
 <p align="center">Figure 2. A Timeline of Prof. Abdussalam Alawini in MongoDB</p>
 
 3. Flask
@@ -76,14 +76,19 @@ iii.	Alerting upon submission of a evaluation form
 
 2. Basic Functions
 The basic functions of Scholarview are insert, delete, update and search which are implemented throughout the user account system and the visualization system. When a user registers for an account at Scholarview, the request will be sent to the backend, and a stored procedure “createUser”, as illustrated by Figure 3,  will be called. The procedure first checks if the username that the user has entered is already in the database. It will either return 0 if username already exists or return 1 after inserting the user account record into “Users” table if username does not exist.
+<p align="center">Figure 3. Stored Procedure “createUser” with INSERT function</p>
+
+Upon user login, Scholarview will call the “checkinUser” procedure, as illustrated by Figure 4. The procedure first checks if the user exists in the “Users” table or not. If not, the procedure returns 2, which represents “user does not exist status”. If the user does exist, the procedure will further check whether the password entered by the user is the same as the password stored in the “Users” table. If they are the same, the procedure returns 1; otherwise, the procedure returns 0. A single SELECT command is used to realize this functionality.
+<p align="center">Figure 4. Stored Procedure “checkinUser”</p>
+
+We have multiple search functions in the visualization part, which includes 6 charts empowered by amCharts. A summary of the name (purpose) of a chart, the SQL query used to retrieve raw data, and the post-processing process is given by Table 2.
 <p align="center">Table 7. A summary of the visualization charts</p>
-![Table7](https://user-images.githubusercontent.com/43663301/82162988-cb6d0c00-986d-11ea-93d6-34f64a6b0545.PNG)
 
 
 3. Advanced Function
 The advanced function of Scholarview is demonstrated by the rating system and the user account system. They together allow a user to rate a scholar’s courses. The challenge of implementing a rating system comes from the complicated software logics and information flow, as illustrated by Figure 4. In this figure, the disks represent the databases; the rectangles represent the route and functions in the backend; the ellipses represent the HTML templates; blue lines describe information flows through HTTP requests, while black lines describe information flow between backend functions and databases.
 ![InfoFlow](https://user-images.githubusercontent.com/43663301/82162423-e63d8180-9869-11ea-9861-344728a9eaab.png)
-Figure 4. Information Flow in the System
+<p align="center">Figure 5. Information Flow in the System</p>
 
 As an example, once a user enters the website, the home function will be activated so the user is directed to the home.html page, where he can logout, login, signup, or search by submitting forms. If he logs in or signs up, the corresponding functions will be called; the functions will communicate with the “Users” database, retrieve some information, process it, and rerender home.html with certain parameters. If the user searches for a scholar, the search function will first ask “Ratings” if the user has rated any of the scholar’s courses, the answer from ratings “rated” will be sent back to search(). Then, search() will call process(), passing the scholar’s name and “rated” parameters to it. Next, process() will communicate with MySQL and NoSQL databases to obtain the proper data. Finally, process() will send the processed data and “rated” to scholar.html for rendering. Depending on the value of “rated”, scholar.html will either show or hide an evaluation form. For example, if “rated” tells scholar.html that the user has already rated for the scholar on the course, the evaluation form for the course will be hidden and a thank-you message will be displayed.
 
@@ -105,3 +110,5 @@ APPENDIX
 
 <p align="center">Table 5: Schema and Description for the “Rates” MySQL Table</p>
 ![Table5](https://user-images.githubusercontent.com/43663301/82162591-4c76d400-986b-11ea-873f-a253df12812f.PNG)
+
+
