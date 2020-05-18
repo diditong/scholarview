@@ -24,7 +24,7 @@ Scholarview uses MySQL and MongoDB as the database providers. For MySQL, five ta
 2. MongoDB
 The data from the timeline section for Scholarview is maintained in MongoDB, which is a document-based NoSQL database. A timeline is a sequence of major events in a scholar’s academic career. (An example of a timeline stored in MongoDB is illustrated by Figure 2.) Notice the fact that the number of major events varies from scholar to scholar. For example, a scholar who just became an assistant professor might only have graduations and earning awards during the Ph.D. period as his major events, while a distinguished tenured professor can have tens of honorable awards, fellowships, and research grants. Such variance of the timeline data disqualifies MySQL as a database solution. First, the use of MySQL database requires the maintenance of an extra Event ID column, which increases the difficulty of web development. However, MongoDB stores each scholar’s timeline in an individual document which automatically generates and removes Event ID upon insertion and deletion of a record. Second, the selected data from MySQL cannot be directly sent to the frontend for displaying purposes. It usually needs to be converted to JSON to feed most chart APIs (e.g. amCharts, Chart.js, etc.) In contrast, querying MongoDB directly yields results in the JSON format, thus eliminating the post-processing process. 
 
-<p align="center">![TimeLine](https://user-images.githubusercontent.com/43663301/82162117-ac6b7b80-9867-11ea-8797-94f349276f31.PNG)</p>
+![TimeLine](https://user-images.githubusercontent.com/43663301/82163618-f8bbb900-9871-11ea-833f-f7de86af3c52.PNG)
 <p align="center">Figure 2. A Timeline of Prof. Abdussalam Alawini in MongoDB</p>
 
 3. Flask
