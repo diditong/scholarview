@@ -30,10 +30,7 @@ The data from the timeline section for Scholarview is maintained in MongoDB, whi
 3. Flask
 The backend of Scholarview is implemented with Flask, a micro web framework written in Python. The “flask”, “mysql” and “pymongo” libraries are imported for backend development. The specific functions and the purposes for using them are summarized in Table 6. 
 
-
-
-
-
+![Table6](https://user-images.githubusercontent.com/43663301/82164397-03784d00-9876-11ea-9f21-2fd0ea0c562e.PNG)
 
 Five routes are defined, “/login”, “/logout”, “/signup”, “/home”, “/search”, “/process”, and “/submit”. A function with the same name is developed for each route. An example of a route and function (/login and login()) is shown in the following interactive window of Visual Studio Code. 
 
@@ -90,12 +87,7 @@ Upon user login, Scholarview will call the “checkinUser” procedure, as illus
 
 We have multiple search functions in the visualization part, which includes 6 charts empowered by amCharts. A summary of the name (purpose) of a chart, the SQL query used to retrieve raw data, and the post-processing process is given by Table 2.
 
-
-
-
-
-
-
+![Table7](https://user-images.githubusercontent.com/43663301/82164401-083d0100-9876-11ea-96f3-45ce952c531f.PNG)
 
 
 3. Advanced Function
@@ -110,5 +102,12 @@ While complicated software logic accounts for a challenge, the team struggled wi
 
 APPENDIX
 
+![Table1](https://user-images.githubusercontent.com/43663301/82164370-ec395f80-9875-11ea-9651-8cce5fdf55fc.PNG)
 
+![Table2](https://user-images.githubusercontent.com/43663301/82164376-efcce680-9875-11ea-89fc-864e7785af01.PNG)
 
+![Table3](https://user-images.githubusercontent.com/43663301/82164379-f52a3100-9875-11ea-845d-720acfbca8c9.PNG)
+
+![Table4](https://user-images.githubusercontent.com/43663301/82164386-f9eee500-9875-11ea-9dc9-b633853d796a.PNG)
+
+![Table5](https://user-images.githubusercontent.com/43663301/82164392-fe1b0280-9875-11ea-8200-86bd2b1d088b.PNG)
